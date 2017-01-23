@@ -1,0 +1,17 @@
+public class Terrain {
+	boolean isStart;
+	boolean isGoal;
+	boolean isUnNav;
+	int complexity;
+	int row_num;
+	int col_num;
+	Terrain up;
+	Terrain down;
+	Terrain left;
+	Terrain right;
+	
+	public Terrain(int complexity) {
+		this.complexity = complexity;
+		
+	}
+}

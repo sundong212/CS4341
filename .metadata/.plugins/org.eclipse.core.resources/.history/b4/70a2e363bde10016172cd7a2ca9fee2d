@@ -1,0 +1,49 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.util.ArrayList;
+
+public class World {
+	
+	public World(String input_file, String[] args) {
+		
+		try{
+			String file = args[0];
+            BufferedReader buf = new BufferedReader(new FileReader(file));
+            ArrayList<Terrain> terrains_list = new ArrayList<Terrain>();
+            String buf_line = null;
+            String[] wordsArray;
+
+            while(true){
+            	buf_line = buf.readLine();
+                if(buf_line == null){  
+                    break; 
+                }else{
+                    wordsArray = buf_line.split("\t");
+                    for(String each : wordsArray){
+                        if(!"".equals(each)){
+                        	
+                        	if (each == ) {
+								
+							}
+                        	
+                        	int complexity = Integer.parseInt(each);
+                        	
+                        	
+                        	terrains_list.add(each);
+                        }
+                    }
+                }
+            }
+
+            for(String each : terrains_list){
+                System.out.println(each);
+            }
+
+            buf.close();
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+		
+	}
+}
