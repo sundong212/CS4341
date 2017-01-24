@@ -1,0 +1,14 @@
+import java.util.Hashtable;
+
+public class DecideWorld {
+	
+	int row;
+	int col;
+	Hashtable<Integer, Hashtable<Integer, Terrain>> all_terrains;
+	
+	
+	
+	public void decideWorld(World world) {
+		
+	}
+}

@@ -1,0 +1,40 @@
+import java.util.Hashtable;
+
+public class DecideWorld {
+	
+	int row;
+	int col;
+	Hashtable<Integer, Hashtable<Integer, Terrain>> all_terrains;
+	
+	public DecideWorld(World world) {
+		this.row = world.row;
+		this.col = world.col;
+		this.all_terrains = world.all_terrains;
+	}
+	
+	public void decideWorld(World world) {
+		
+		int temp_row;
+		
+		for (temp_row = 1; temp_row <= row; temp_row++) {
+			
+			// if it's the first row
+			if (temp_row == 1) {
+				for (int i = 0; i < array.length; i++) {
+					
+				}
+				
+			}
+						
+			// if it's the last row
+			if (temp_row == row) {
+				
+			}
+			
+			
+			
+			
+			
+		}
+	}
+}

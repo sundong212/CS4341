@@ -1,0 +1,7 @@
+
+public class DecideWorld {
+	
+	public void decideWorld(World world) {
+		
+	}
+}

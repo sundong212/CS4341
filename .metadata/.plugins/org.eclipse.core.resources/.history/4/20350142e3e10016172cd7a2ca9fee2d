@@ -1,0 +1,16 @@
+
+public class AStar {
+	public static void main(String[] args) {
+		
+		
+		World new_world = new World(args);
+//		
+//        int a= 2;
+//        int b= 3;
+//        Terrain temp1 = new_world.all_terrains.get(a).get(b);
+//        System.out.println(temp1.row_num);
+//        System.out.println(temp1.col_num);
+//        System.out.println(temp1.isUnNav);
+		
+	}
+}

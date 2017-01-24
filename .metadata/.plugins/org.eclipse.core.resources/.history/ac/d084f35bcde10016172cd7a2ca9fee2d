@@ -1,0 +1,28 @@
+import java.util.Hashtable;
+
+public class DecideWorld {
+	
+	int row;
+	int col;
+	Hashtable<Integer, Hashtable<Integer, Terrain>> all_terrains;
+	
+	public DecideWorld(World world) {
+		this.row = world.row;
+		this.col = world.col;
+		this.all_terrains = world.all_terrains;
+	}
+	
+	public void decideWorld(World world) {
+		for (int temp_row = 1; temp_row <= row; temp_row++) {
+			
+			int temp_col;
+			
+			for (temp_col = 1; temp_col < col; temp_col++) {
+				
+			}
+			
+			
+			
+		}
+	}
+}
