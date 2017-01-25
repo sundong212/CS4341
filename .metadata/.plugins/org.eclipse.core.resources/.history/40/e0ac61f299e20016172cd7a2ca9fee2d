@@ -1,0 +1,64 @@
+
+public class Heuristic {
+	
+	public int findHeuristic(int version, Terrain current, Terrain goal) {
+		switch (version) {
+		case 1:
+			
+			if(goal.isGoal == false){
+				return -1; //report error when goal is not goal
+			}
+			
+			if(current.isUnNav == true){
+				return -1; //drive into wall
+			}
+			
+			return 0;
+			
+		case 2:
+			
+			if(goal.isGoal == false){
+				return -1; //report error when goal is not goal
+			}
+			
+			if(current.isUnNav == true){
+				return -1; //drive into wall
+			}
+			
+			return Math.min(Math.abs(goal.col_num-current.col_num), Math.abs(goal.row_num-current.row_num));
+			
+		case 3:
+			if(goal.isGoal == false){
+				return -1; //report error when goal is not goal
+			}
+			
+			if(current.isUnNav == true){
+				return -1; //drive into wall
+			}
+			
+			return Math.max(Math.abs(goal.col_num-current.col_num), Math.abs(goal.row_num-current.row_num));
+			
+		case 4:
+			if(goal.isGoal == false){
+				return -1; //report error when goal is not goal
+			}
+			
+			if(current.isUnNav == true){
+				return -1; //drive into wall
+			}
+			
+			
+			return Math.abs(goal.col_num-current.col_num)+Math.abs(goal.row_num-current.row_num);
+			
+		case 5:
+			
+			
+			
+
+		default: // case 6
+			
+			
+			break;
+		}
+	}
+}

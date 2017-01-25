@@ -41,13 +41,12 @@ public class World {
 								temp.isStart = true;
 								temp.row_num = current_line;
 	                        	temp.col_num = current_col;
-								this.startTerrain = temp;
+//								this.startTerrain = 
 							}
                         	else if (each.equals("G")) {
 								temp.isGoal = true;
 								temp.row_num = current_line;
 	                        	temp.col_num = current_col;
-	                        	this.goalTerrain = temp;
 							}
                         	else if (each.equals("#")) {
 								temp.isUnNav = true;
