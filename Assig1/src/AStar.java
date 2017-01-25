@@ -1,3 +1,5 @@
+import java.util.PriorityQueue;
+
 
 public class AStar {
 	public static void main(String[] args) {
@@ -9,11 +11,40 @@ public class AStar {
 		
 		// till now new_world is completely constructed
 		
-		Terrain startTerrain = new_world.startTerrain;
-		Terrain goalTerrain = new_world.goalTerrain;
+		Terrain start = new_world.startTerrain;
+		Terrain goal = new_world.goalTerrain;
+		Terrain current = start;
 		
-		while(true) {
+		PriorityQueue frontier = new PriorityQueue<Terrain>();
+		
+		frontier.add(start);
+		
+		while(current.equals(goal)) {
 			
+			Cost cost = new Cost();
+			
+			if(current.up != null){
+				
+				current.up.time_consumed = cost.findCost(current, current.up).action_cost;
+			
+			}
 		}
+			
+			
+			
+			
+		
+		
+		
 	}
+	
+	public void navigation(Terrain startPoint, Terrain goalPoint){
+		
+		
+		
+	}
+	
+	
+	
+	
 }
