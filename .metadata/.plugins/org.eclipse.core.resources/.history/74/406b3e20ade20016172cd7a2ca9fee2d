@@ -1,6 +1,6 @@
 
 public class ActionToTake {
-	String orient_move; // "left" "right" "none" "left-left" 
+	String orient_move; // "left" "right" "none" 
 	String straight_move; // "forward" or "leap"
 	int action_cost;
 	

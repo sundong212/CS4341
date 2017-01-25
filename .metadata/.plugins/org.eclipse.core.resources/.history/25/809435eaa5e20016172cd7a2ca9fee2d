@@ -1,0 +1,9 @@
+
+public class Cost {
+	
+	public void findCost(Terrain current) {
+		String current_direction = current.direction;
+		
+	}
+
+}

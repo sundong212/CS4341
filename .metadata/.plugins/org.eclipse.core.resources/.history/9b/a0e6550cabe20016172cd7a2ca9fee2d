@@ -12,8 +12,6 @@ public class AStar {
 		Terrain startTerrain = new_world.startTerrain;
 		Terrain goalTerrain = new_world.goalTerrain;
 		
-
-		
 		
 	}
 }

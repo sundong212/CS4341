@@ -1,0 +1,12 @@
+
+public class Cost {
+	
+	public ActionToTake findCost(Terrain current, Terrain target) {
+		
+		if ((current.row_num == target.row_num) && (current.col_num == (target.col_num+1))) {
+			
+		}
+		
+	}
+
+}

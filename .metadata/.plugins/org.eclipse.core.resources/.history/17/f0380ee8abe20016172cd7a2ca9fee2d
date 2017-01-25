@@ -1,0 +1,55 @@
+
+public class Cost {
+	
+	public ActionToTake findCost(Terrain current, Terrain target) {
+		
+		ActionToTake action = new ActionToTake();
+		
+		if ((current.row_num == target.row_num) && (current.col_num > target.col_num)) { // target is on the left of the current
+			
+			if ((current.col_num - target.col_num) == 1) { // if it's normal forward
+				
+				if (current.direction.equals("north")) {
+					action.action_cost = (int)1/3 * Math
+							
+							
+				} else if (current.direction.equals("south")) {
+					
+				} else if (current.direction.equals("west")) {
+					
+				} else {
+					
+				}
+				
+			} else { // if it's a leap
+				
+			}
+		
+		} else if ((current.row_num == target.row_num) && (current.col_num < target.col_num)) { // target is on the right of the current
+			
+			if ((target.col_num - current.col_num) == 1) { // if it's normal forward
+				
+			} else { // if it's a leap
+				
+			}
+		
+		} else if ((current.col_num == target.col_num) && (current.row_num > target.row_num)) { // target is on the up of the current
+			
+			if ((current.row_num - target.row_num) == 1) { // it's a normal forward
+				
+			} else { // it's a leap
+				
+			}
+			
+		} else { // target is on the down of the current
+			if ((target.row_num - current.row_num) == 1) { // it's a normal forward
+				
+			} else { // it's a leap
+				
+			}			
+			
+		}
+		
+	}
+
+}
