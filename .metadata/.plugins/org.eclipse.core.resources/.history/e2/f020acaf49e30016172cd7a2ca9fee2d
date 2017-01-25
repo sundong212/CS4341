@@ -2,7 +2,6 @@ public class Terrain {
 	boolean isStart;
 	boolean isGoal;
 	boolean isUnNav;
-	boolean isClosed;
 	int complexity;
 	int row_num;
 	int col_num;
@@ -21,7 +20,6 @@ public class Terrain {
 		this.isStart = false;
 		this.isGoal = false;
 		this.isUnNav = false;
-		this.isClosed = false;
 		this.complexity = -1;
 		this.row_num = -1;
 		this.col_num = -1;
