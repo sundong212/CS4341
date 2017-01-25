@@ -13,7 +13,8 @@ public class Terrain {
 	Terrain right;
 	Terrain from;
 	Terrain to;
-	ActionToTake action;
+	
+	
 	
 	public Terrain() {
 		this.isStart = false;
@@ -30,7 +31,6 @@ public class Terrain {
 		this.right = null;
 		this.from = null;
 		this.to = null;
-		this.action = new ActionToTake();
 	}
 	
 }

@@ -15,6 +15,7 @@ public class Terrain {
 	Terrain to;
 	ActionToTake action;
 	
+	
 	public Terrain() {
 		this.isStart = false;
 		this.isGoal = false;

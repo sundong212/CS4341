@@ -80,5 +80,14 @@ public class World {
         }
 		
 	}
+	
+	public void findStart() {
+		// TODO Auto-generated method stub
 
+	}
+	
+	private void findGoal() {
+		// TODO Auto-generated method stub
+
+	}
 }

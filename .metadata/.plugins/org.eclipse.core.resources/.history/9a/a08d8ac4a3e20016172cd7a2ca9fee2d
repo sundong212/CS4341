@@ -80,5 +80,12 @@ public class World {
         }
 		
 	}
-
+	
+	public Terrain findStart() {
+		return this.startTerrain;
+	}
+	
+	private Terrain findGoal() {
+		return this.goalTerrain;
+	}
 }

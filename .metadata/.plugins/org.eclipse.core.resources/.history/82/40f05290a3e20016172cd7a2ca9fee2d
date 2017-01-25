@@ -1,0 +1,10 @@
+
+public class ActionToTake {
+	String orient_move;
+	String straight_move;
+	
+	public ActionToTake() {
+		this.orient_move = null;
+		this.straight_move = null;
+	}
+}
