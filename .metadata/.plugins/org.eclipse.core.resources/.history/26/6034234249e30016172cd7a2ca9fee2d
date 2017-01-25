@@ -6,7 +6,6 @@ public class Terrain {
 	int row_num;
 	int col_num;
 	int time_consumed;
-	int heuristic;
 	String direction;
 	Terrain up;
 	Terrain down;
@@ -23,8 +22,7 @@ public class Terrain {
 		this.complexity = -1;
 		this.row_num = -1;
 		this.col_num = -1;
-		this.time_consumed = -1;
-		this.heuristic = -1;
+		this.cost = -1;
 		this.direction = null;
 		this.up = null;
 		this.down = null;

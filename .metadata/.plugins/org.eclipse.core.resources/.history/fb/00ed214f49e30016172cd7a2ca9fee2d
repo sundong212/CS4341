@@ -62,7 +62,8 @@ public class World {
                         	
                         	terrains_oneline.put(current_col, temp);
                         }
-                         
+                        
+                        
                     }
                     this.all_terrains.put(current_line, terrains_oneline);
                     

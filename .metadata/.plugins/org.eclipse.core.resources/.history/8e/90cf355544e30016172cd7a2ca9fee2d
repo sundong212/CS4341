@@ -23,7 +23,7 @@ public class Heuristic {
 		}
 		
 		
-		direction = ((int)(Math.abs(result-degree)/90));
+		direction = ((int)(Math.abs(result-degree)/90.0));
 		
 		switch (version) {
 		case 1:
@@ -82,7 +82,6 @@ public class Heuristic {
 			if(current.isUnNav == true){
 				return -1; //drive into wall
 			}
-			
 			
 			return Math.abs(goal.col_num-current.col_num)+Math.abs(goal.row_num-current.row_num)+1/3*direction;
 			
