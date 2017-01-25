@@ -83,6 +83,7 @@ public class Heuristic {
 				return -1; //drive into wall
 			}
 			
+			
 			return Math.abs(goal.col_num-current.col_num)+Math.abs(goal.row_num-current.row_num)+1/3*direction;
 			
 
