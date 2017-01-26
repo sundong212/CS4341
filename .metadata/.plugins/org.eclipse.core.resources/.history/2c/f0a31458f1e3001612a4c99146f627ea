@@ -36,13 +36,4 @@ public class Terrain {
 		this.action = new ActionToTake();
 	}
 	
-	private boolean isEqual(int row, int col) {
-		if ((this.row_num == row) && (this.col_num == col)) {
-			return true;
-		} else {
-			return false;
-		}
-
-	}
-	
 }
