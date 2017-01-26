@@ -70,6 +70,9 @@ public class AStar {
 			if(!(current.down.isClosed) && !(current.down.isUnNav)){
 				current.down.time_consumed = cost.findCost(current, current.down).action_cost+current.time_consumed;
 				current.down.from = current;
+				current.down.action = cost.findCost(current, current.down);
+				current.down.heuristic = heu.findHeuristic(4, current.down, goal);
+				current.down.direction = "south";
 				frontier.add(current.down);
 			}
 			
