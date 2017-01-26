@@ -1,4 +1,5 @@
 import java.util.PriorityQueue;
+import java.util.Stack;
 
 
 public class AStar {
@@ -24,21 +25,46 @@ public class AStar {
 		
 		frontier.add(strt);
 		
-		while(current.equals(goal)) {
+		while(new_world.goalTerrain.from == null) {
 			
 			createFrontier(current, goal);
-			frontier.remove(current);////wen ti//
+			QueueType qcurrent = new QueueType(current, current.time_consumed+current.heuristic);
+			frontier.remove(qcurrent);////wen ti//
+			deleteRepeat(current);
 			new_world.all_terrains.get(current.row_num).get(current.col_num).heuristic = current.heuristic;
 			new_world.all_terrains.get(current.row_num).get(current.col_num).time_consumed = current.time_consumed;
 			new_world.all_terrains.get(current.row_num).get(current.col_num).action = current.action;
 			new_world.all_terrains.get(current.row_num).get(current.col_num).from = current.from;
 			new_world.all_terrains.get(current.row_num).get(current.col_num).isClosed = true;
 			new_world.all_terrains.get(current.row_num).get(current.col_num).action = current.action;
-			current = frontier.peek().terrain_inside;
-			
+			current = frontier.peek().terrain_inside;			
 		}
-			
 		
+		Stack<Terrain> path = new Stack<Terrain>();
+		Terrain pathpoint = new Terrain();
+		pathpoint = goal;
+		path.push(pathpoint);
+		while(pathpoint.equals(start)){
+			Terrain temp = new Terrain();
+			temp = goal.from;
+			path.push(temp);
+		}
+		
+	}
+	
+	private static void deleteRepeat(Terrain c){
+		Stack<QueueType> flip = new Stack<QueueType>();			
+		QueueType temp = new QueueType();
+		temp = frontier.poll();
+		while(!frontier.isEmpty()){
+			if(temp.terrain_inside.row_num != c.row_num || temp.terrain_inside.col_num != c.col_num){
+				flip.push(temp);				
+			}
+			temp = frontier.poll();
+		}
+		while(!flip.isEmpty()){
+			frontier.add(flip.pop());
+		}
 	}
 	
 	private static void createFrontier(Terrain current, Terrain goal) {
