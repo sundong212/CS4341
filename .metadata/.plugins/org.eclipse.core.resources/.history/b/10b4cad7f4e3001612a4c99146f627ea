@@ -12,6 +12,20 @@ public class AStar {
 	
 	public static void main(String[] args) {
 		
+		
+//		Stack<test> n = new Stack<test>();
+//		
+//		test a = new test(1,true);
+//		System.out.println(a.intg);
+//		n.push(a);
+//		for(test b : n){
+//			b.intg = 100;
+//		}
+//		
+//		System.out.println(a.intg);
+		
+		
+		
 		World new_world = new World(args);
 		
 		ConstructWorld constructed_world = new ConstructWorld(new_world);

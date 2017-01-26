@@ -12,6 +12,17 @@ public class AStar {
 	
 	public static void main(String[] args) {
 		
+		
+//		Stack<test> n = new Stack<test>();
+//		
+//		test a = new test(1,true);
+//		n.push(a);
+//		test b = n.pop();
+//		
+//		System.out.println(a.equals(b));
+		
+		
+		
 		World new_world = new World(args);
 		
 		ConstructWorld constructed_world = new ConstructWorld(new_world);
