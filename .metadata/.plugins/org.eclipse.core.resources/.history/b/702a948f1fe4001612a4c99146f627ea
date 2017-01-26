@@ -31,14 +31,9 @@ public class AStar {
 		while(new_world.goalTerrain.from == null) {
 			
 			createFrontier(current, goal);
-			
 			QueueType qcurrent = new QueueType(current, current.time_consumed+current.heuristic);
 			frontier.remove(qcurrent);////wen ti//
 			deleteRepeat(current);
-			
-			
-			
-			
 			new_world.all_terrains.get(current.row_num).get(current.col_num).heuristic = current.heuristic;
 			new_world.all_terrains.get(current.row_num).get(current.col_num).time_consumed = current.time_consumed;
 			new_world.all_terrains.get(current.row_num).get(current.col_num).action = current.action;
