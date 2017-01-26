@@ -40,57 +40,78 @@ public class AStar {
 	private static void createFrontier(Terrain current, Terrain goal) {
 		
 		Cost cost = new Cost();
-		Heuristic heu = new Heuristic();
+		Heuristic heu = new Heuristic(); 
+		
 		
 		if(current.up != null){
-			if(!(current.up.isClosed) && !(current.up.isUnNav)){
-				current.up.time_consumed = cost.findCost(current, current.up).action_cost+current.time_consumed;
-				current.up.from = current;
-				current.up.action = cost.findCost(current, current.up);
-				current.up.heuristic = heu.findHeuristic(4, current.up, goal);
-				current.up.direction = "north";
-				frontier.add(current.up);
+			Terrain up = new Terrain();
+			up = current.up;
+			if(!(up.isClosed) && !(up.isUnNav)){
+				up.time_consumed = cost.findCost(current, up).action_cost+current.time_consumed;
+				up.from = current;
+				up.action = cost.findCost(current, up);
+				up.heuristic = heu.findHeuristic(4, up, goal);
+				up.direction = "north";
+				QueueType qup = new QueueType(up,(up.heuristic));
+				frontier.add(qup);
 			}
 			
 			if(current.up.up != null){				
 				if(current.up.up.up != null){
-					if(!(current.up.up.up.isClosed) && !(current.up.up.up.isUnNav)){
-						current.up.up.up.time_consumed = cost.findCost(current, current.up.up.up).action_cost+current.time_consumed;
-						current.up.up.up.from = current;
-						current.up.up.up.action = cost.findCost(current, current.up.up.up);
-						current.up.up.up.heuristic = heu.findHeuristic(4, current.up.up.up, goal);
-						current.up.up.up.direction = "north";		
-						frontier.add(current.up.up.up);
+					Terrain upleap = new Terrain();
+					upleap = current.up.up.up;
+					if(!(upleap.isClosed) && !(upleap.isUnNav)){
+						upleap.time_consumed = cost.findCost(current, upleap).action_cost+current.time_consumed;
+						upleap.from = current;
+						upleap.action = cost.findCost(current, upleap);
+						upleap.heuristic = heu.findHeuristic(4, upleap, goal);
+						upleap.direction = "north";		
+						QueueType qupleap = new QueueType(upleap,(upleap.heuristic));
+						frontier.add(qupleap);
 					}
 					
 				}
 			}
 			
 		}if(current.down != null){
-			if(!(current.down.isClosed) && !(current.down.isUnNav)){
-				current.down.time_consumed = cost.findCost(current, current.down).action_cost+current.time_consumed;
-				current.down.from = current;
-				current.down.action = cost.findCost(current, current.down);
-				current.down.heuristic = heu.findHeuristic(4, current.down, goal);
-				current.down.direction = "south";
-				frontier.add(current.down);
+			Terrain down = new Terrain();
+			down = current.down;
+			if(!(down.isClosed) && !(down.isUnNav)){
+				down.time_consumed = cost.findCost(current, down).action_cost+current.time_consumed;
+				down.from = current;
+				down.action = cost.findCost(current, down);
+				down.heuristic = heu.findHeuristic(4, down, goal);
+				down.direction = "south";
+				QueueType qdown = new QueueType(down,(down.heuristic));
+				frontier.add(qdown);
 			}
 			
 			if(current.down.down != null){				
 				if(current.down.down.down != null){
-					if(!(current.down.down.down.isClosed) && !(current.down.down.down.isUnNav)){
-						current.down.down.down.time_consumed = cost.findCost(current, current.down.down.down).action_cost+current.time_consumed;
-						current.down.down.down.from = current;
-						frontier.add(current.down.down.down);
+					Terrain downleap = new Terrain();
+					downleap = current.down.down.down;
+					if(!(downleap.isClosed) && !(current.down.down.down.isUnNav)){
+						downleap.time_consumed = cost.findCost(current, downleap).action_cost+current.time_consumed;
+						downleap.from = current;
+						downleap.action = cost.findCost(current, downleap);
+						downleap.heuristic = heu.findHeuristic(4, downleap, goal);
+						downleap.direction = "south";
+						QueueType qdownleap = new QueueType(downleap,(downleap.heuristic));
+						frontier.add(qdownleap);
 					}
 					
 				}
 			}
 			
 		}if(current.left != null){
+			Terrain left = new Terrain();
+			
 			if(!(current.left.isClosed) && !(current.left.isUnNav)){
 				current.left.time_consumed = cost.findCost(current, current.left).action_cost+current.time_consumed;
 				current.left.from = current;
+				current.left.action = cost.findCost(current, current.left);
+				current.left.heuristic = heu.findHeuristic(4, current.left, goal);
+				current.left.direction = "west";
 				frontier.add(current.left);
 			}
 			
@@ -99,6 +120,9 @@ public class AStar {
 					if(!(current.left.left.left.isClosed) && !(current.left.left.left.isUnNav)){
 						current.left.left.left.time_consumed = cost.findCost(current, current.left.left.left).action_cost+current.time_consumed;
 						current.left.left.left.from = current;
+						current.left.left.left.action = cost.findCost(current, current.left.left.left);
+						current.left.left.left.heuristic = heu.findHeuristic(4, current.left.left.left, goal);
+						current.left.left.left.direction = "west";
 						frontier.add(current.left.left.left);
 					}
 				}
@@ -108,6 +132,9 @@ public class AStar {
 			if(!(current.right.isClosed) && !(current.right.isUnNav)){
 				current.right.time_consumed = cost.findCost(current, current.right).action_cost+current.time_consumed;
 				current.right.from = current;
+				current.right.action = cost.findCost(current, current.right);
+				current.right.heuristic = heu.findHeuristic(4, current.right, goal);
+				current.right.direction = "east";
 				frontier.add(current.right);
 			}
 			
@@ -116,6 +143,9 @@ public class AStar {
 					if(!(current.right.right.right.isClosed) && !(current.right.right.right.isUnNav)){
 						current.right.right.right.time_consumed = cost.findCost(current, current.right.right.right).action_cost+current.time_consumed;
 						current.right.right.right.from = current;
+						current.right.right.right.action = cost.findCost(current, current.right.right.right);
+						current.right.right.right.heuristic = heu.findHeuristic(4, current.right.right.right, goal);
+						current.right.right.right.direction = "east";
 						frontier.add(current.right.right.right);
 					}
 					
