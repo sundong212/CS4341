@@ -1,0 +1,7 @@
+
+public class PopFrontierAndDelete {
+	public void popLowest() {
+		// TODO Auto-generated method stub
+
+	}
+}

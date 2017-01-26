@@ -1,0 +1,20 @@
+!SESSION 2017-01-23 16:37:18.062 -----------------------------------------------
+eclipse.buildId=4.6.2.M20161124-1400
+java.version=1.8.0_121
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.recommenders.completion.rcp 4 11 2017-01-26 00:54:29.130
+!MESSAGE Session processor ‘class org.eclipse.recommenders.internal.subwords.rcp.SubwordsSessionProcessor’ failed with exception.
+!STACK 0
+java.lang.OutOfMemoryError: Requested array size exceeds VM limit
+
+!ENTRY org.eclipse.jdt.ui 2 0 2017-01-26 00:54:35.313
+!MESSAGE The 'org.eclipse.recommenders.completion.rcp.javaCompletionProposalComputer.intelligent' proposal computer from the 'org.eclipse.recommenders.completion.rcp' plug-in did not complete normally. The extension took too long to return from the 'computeCompletionProposals()' operation.
+
+!ENTRY org.eclipse.recommenders.completion.rcp 4 11 2017-01-26 00:54:51.598
+!MESSAGE Session processor ‘class org.eclipse.recommenders.internal.subwords.rcp.SubwordsSessionProcessor’ failed with exception.
+!STACK 0
+java.lang.OutOfMemoryError: Requested array size exceeds VM limit

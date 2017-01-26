@@ -1,13 +1,27 @@
 import java.util.PriorityQueue;
 import java.util.Stack;
 
+//import java.util.Stack;
 
 public class AStar {
 	
-	static PriorityQueue<QueueType> frontier = new PriorityQueue<QueueType>();	
+	static QueueComparator comparator = new QueueComparator();
+	
+	static PriorityQueue<QueueType> frontier = new PriorityQueue<QueueType>(11,comparator);	
 	static int expended = 0;
 	
 	public static void main(String[] args) {
+		
+		
+//		Stack<test> n = new Stack<test>();
+//		
+//		test a = new test(1,true);
+//		n.push(a);
+//		test b = n.pop();
+//		
+//		System.out.println(a.equals(b));
+		
+		
 		
 		World new_world = new World(args);
 		
