@@ -27,13 +27,14 @@ public class AStar {
 		while(current.equals(goal)) {
 			
 			createFrontier(current, goal);
-			frontier.remove(current);
+			frontier.remove(current);////wen ti//
 			new_world.all_terrains.get(current.row_num).get(current.col_num).heuristic = current.heuristic;
 			new_world.all_terrains.get(current.row_num).get(current.col_num).time_consumed = current.time_consumed;
 			new_world.all_terrains.get(current.row_num).get(current.col_num).action = current.action;
 			new_world.all_terrains.get(current.row_num).get(current.col_num).from = current.from;
-			new_world.all_terrains.get(current.row_num).get(current.col_num).isClosed = current.isClosed;
+			new_world.all_terrains.get(current.row_num).get(current.col_num).isClosed = true;
 			new_world.all_terrains.get(current.row_num).get(current.col_num).action = current.action;
+			current = frontier.peek().terrain_inside;
 			
 		}
 			
