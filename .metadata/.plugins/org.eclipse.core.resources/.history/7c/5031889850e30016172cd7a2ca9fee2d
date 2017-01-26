@@ -29,6 +29,13 @@ public class AStar {
 			
 			}
 		}
+			
+			
+			
+			
+		
+		
+		
 	}
 	
 	public void navigation(Terrain startPoint, Terrain goalPoint){
