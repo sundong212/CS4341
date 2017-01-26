@@ -1,0 +1,237 @@
+import java.util.PriorityQueue;
+import java.util.Stack;
+
+//import java.util.Stack;
+
+public class AStar {
+	
+	static QueueComparator comparator = new QueueComparator();
+	
+	static PriorityQueue<QueueType> frontier = new PriorityQueue<QueueType>(11,comparator);	
+	static int expended = 0;
+	
+	public static void main(String[] args) {
+		
+		
+		QueueType a = new QueueType();
+		a.h_plus_g = 1;
+		QueueType b = new QueueType();
+		b.h_plus_g = 2;
+		QueueType c = new QueueType();
+		c.h_plus_g = 3;
+		QueueType d = new QueueType();
+		d.h_plus_g = 3;
+		QueueType e = new QueueType();
+		e.h_plus_g = 6;
+		frontier.add(a);
+		frontier.add(b);
+		frontier.add(c);
+		frontier.add(d);
+		frontier.add(e);
+		
+		for (int i = 0; i < 5; i++) {
+			System.out.println(frontier.poll().h_plus_g);
+		}
+		
+		
+		
+	
+		
+//		World new_world = new World(args);
+//		
+//		ConstructWorld constructed_world = new ConstructWorld(new_world);
+//		constructed_world.constructWorld(new_world);
+//		
+//		// till now new_world is completely constructed
+//		
+//		Terrain start = new_world.startTerrain;
+//		Terrain goal = new_world.goalTerrain;
+//		Terrain current = start;
+//		current.direction = "north";
+//		Heuristic heu = new Heuristic(); 
+//		QueueType strt = new QueueType(start, heu.findHeuristic(4, start, goal));
+//		
+//		frontier.add(strt);
+//		
+//		while(new_world.goalTerrain.from == null) {
+//			
+//			createFrontier(current, goal);
+//			QueueType qcurrent = new QueueType(current, current.time_consumed+current.heuristic);
+//			frontier.remove(qcurrent);////wen ti//
+//			deleteRepeat(current);
+//			new_world.all_terrains.get(current.row_num).get(current.col_num).heuristic = current.heuristic;
+//			new_world.all_terrains.get(current.row_num).get(current.col_num).time_consumed = current.time_consumed;
+//			new_world.all_terrains.get(current.row_num).get(current.col_num).action = current.action;
+//			new_world.all_terrains.get(current.row_num).get(current.col_num).from = current.from;
+//			new_world.all_terrains.get(current.row_num).get(current.col_num).isClosed = true;
+//			new_world.all_terrains.get(current.row_num).get(current.col_num).action = current.action;
+//			current = frontier.peek().terrain_inside;			
+//		}
+//		
+//		Stack<Terrain> path = new Stack<Terrain>();
+//		Terrain pathpoint = new Terrain();
+//		pathpoint = goal;
+//		path.push(pathpoint);
+//		
+//		while(pathpoint.equals(start)){
+//			Terrain temp = new Terrain();
+//			temp = goal.from;
+//			path.push(temp);
+//		}
+//		
+//	}
+//	
+//	private static void deleteRepeat(Terrain c){
+//		Stack<QueueType> flip = new Stack<QueueType>();			
+//		QueueType temp = new QueueType();
+//		temp = frontier.poll();
+//		while(!frontier.isEmpty()){
+//			if(temp.terrain_inside.row_num != c.row_num || temp.terrain_inside.col_num != c.col_num){
+//				flip.push(temp);				
+//			}
+//			temp = frontier.poll();
+//		}
+//		while(!flip.isEmpty()){
+//			frontier.add(flip.pop());
+//		}
+//	}
+//	
+//	private static void createFrontier(Terrain current, Terrain goal) {
+//		
+//		Cost cost = new Cost();
+//		Heuristic heu = new Heuristic(); 
+//		
+//		
+//		if(current.up != null){
+//			Terrain up = new Terrain();
+//			up = current.up;
+//			if(!(up.isClosed) || !(up.isUnNav)){
+//				up.time_consumed = cost.findCost(current, up).action_cost+current.time_consumed;
+//				up.from = current;
+//				up.action = cost.findCost(current, up);
+//				up.heuristic = heu.findHeuristic(4, up, goal);
+//				up.direction = "north";
+//				QueueType qup = new QueueType(up,(up.heuristic+up.time_consumed));
+//				frontier.add(qup);
+//				expended++;
+//			}
+//			
+//			if(current.up.up != null){				
+//				if(current.up.up.up != null){
+//					Terrain upleap = new Terrain();
+//					upleap = current.up.up.up;
+//					if(!(upleap.isClosed) || !(upleap.isUnNav)){
+//						upleap.time_consumed = cost.findCost(current, upleap).action_cost+current.time_consumed;
+//						upleap.from = current;
+//						upleap.action = cost.findCost(current, upleap);
+//						upleap.heuristic = heu.findHeuristic(4, upleap, goal);
+//						upleap.direction = "north";		
+//						QueueType qupleap = new QueueType(upleap,(upleap.heuristic+upleap.time_consumed));
+//						frontier.add(qupleap);
+//						expended++;
+//					}
+//					
+//				}
+//			}
+//			
+//		}if(current.down != null){
+//			Terrain down = new Terrain();
+//			down = current.down;
+//			if(!(down.isClosed) || !(down.isUnNav)){
+//				down.time_consumed = cost.findCost(current, down).action_cost+current.time_consumed;
+//				down.from = current;
+//				down.action = cost.findCost(current, down);
+//				down.heuristic = heu.findHeuristic(4, down, goal);
+//				down.direction = "south";
+//				QueueType qdown = new QueueType(down,(down.heuristic+down.time_consumed));
+//				frontier.add(qdown);
+//				expended++;
+//			}
+//			
+//			if(current.down.down != null){				
+//				if(current.down.down.down != null){
+//					Terrain downleap = new Terrain();
+//					downleap = current.down.down.down;
+//					if(!(downleap.isClosed) || !(downleap.isUnNav)){
+//						downleap.time_consumed = cost.findCost(current, downleap).action_cost+current.time_consumed;
+//						downleap.from = current;
+//						downleap.action = cost.findCost(current, downleap);
+//						downleap.heuristic = heu.findHeuristic(4, downleap, goal);
+//						downleap.direction = "south";
+//						QueueType qdownleap = new QueueType(downleap,(downleap.heuristic+downleap.time_consumed));
+//						frontier.add(qdownleap);
+//						expended++;
+//					}
+//					
+//				}
+//			}
+//			
+//		}if(current.left != null){
+//			Terrain left = new Terrain();
+//			left = current.left;
+//			if(!(left.isClosed) || !(left.isUnNav)){
+//				left.time_consumed = cost.findCost(current, left).action_cost+current.time_consumed;
+//				left.from = current;
+//				left.action = cost.findCost(current, left);
+//				left.heuristic = heu.findHeuristic(4, left, goal);
+//				left.direction = "west";
+//				QueueType qleft = new QueueType(left,(left.heuristic+left.time_consumed));
+//				frontier.add(qleft);
+//				expended++;
+//			}
+//			
+//			if(current.left.left != null){				
+//				if(current.left.left.left != null){
+//					Terrain leftleap = new Terrain();
+//					leftleap = current.left.left.left;
+//					if(!(leftleap.isClosed) || !(leftleap.isUnNav)){
+//						leftleap.time_consumed = cost.findCost(current, leftleap).action_cost+current.time_consumed;
+//						leftleap.from = current;
+//						leftleap.action = cost.findCost(current, leftleap);
+//						leftleap.heuristic = heu.findHeuristic(4, leftleap, goal);
+//						leftleap.direction = "west";
+//						QueueType qleftleap = new QueueType(leftleap,(leftleap.heuristic+leftleap.time_consumed));
+//						frontier.add(qleftleap);
+//						expended++;
+//					}
+//				}
+//			}
+//			
+//		}if(current.right != null){
+//			Terrain right = new Terrain();
+//			right = current.right;
+//			if(!(right.isClosed) || !(right.isUnNav)){
+//				right.time_consumed = cost.findCost(current, right).action_cost+current.time_consumed;
+//				right.from = current;
+//				right.action = cost.findCost(current, right);
+//				right.heuristic = heu.findHeuristic(4, right, goal);
+//				right.direction = "east";
+//				QueueType qright = new QueueType(right,(right.heuristic+right.time_consumed));
+//				frontier.add(qright);
+//				expended++;
+//			}
+//			
+//			if(current.right.right != null){				
+//				if(current.right.right.right != null){
+//					Terrain rightleap = current.right.right.right;
+//					if(!(rightleap.isClosed) || !(rightleap.isUnNav)){
+//						rightleap.time_consumed = cost.findCost(current, rightleap).action_cost+current.time_consumed;
+//						rightleap.from = current;
+//						rightleap.action = cost.findCost(current, rightleap);
+//						rightleap.heuristic = heu.findHeuristic(4, rightleap, goal);
+//						rightleap.direction = "east";
+//						QueueType qrightleap = new QueueType(right,(rightleap.heuristic+rightleap.time_consumed));
+//						frontier.add(qrightleap);
+//						expended++;
+//					}
+//					
+//				}
+//			}
+//			
+//		}		
+//		
+//		return;
+	}
+
+
+}
