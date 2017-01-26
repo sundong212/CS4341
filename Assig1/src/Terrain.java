@@ -2,20 +2,20 @@ public class Terrain {
 	boolean isStart;
 	boolean isGoal;
 	boolean isUnNav;
-	boolean isClosed;
-	int complexity;
+	boolean isClosed;		//change
+	int complexity;		
 	int row_num;
 	int col_num;
-	int time_consumed;
-	int heuristic;
-	String direction;
+	int time_consumed;		//change
+	int heuristic;			//change
+	String direction;		//change
 	Terrain up;
 	Terrain down;
 	Terrain left;
 	Terrain right;
-	Terrain from;
-	Terrain to;
-	ActionToTake action;
+	Terrain from;			//change
+
+	ActionToTake action;	//change
 	
 	public Terrain() {
 		this.isStart = false;
@@ -25,7 +25,7 @@ public class Terrain {
 		this.complexity = -1;
 		this.row_num = -1;
 		this.col_num = -1;
-		this.time_consumed = -1;
+		this.time_consumed = 0;
 		this.heuristic = -1;
 		this.direction = null;
 		this.up = null;
@@ -33,7 +33,6 @@ public class Terrain {
 		this.left = null;
 		this.right = null;
 		this.from = null;
-		this.to = null;
 		this.action = new ActionToTake();
 	}
 	
