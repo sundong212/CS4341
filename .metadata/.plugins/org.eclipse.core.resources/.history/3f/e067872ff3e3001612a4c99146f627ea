@@ -58,7 +58,6 @@ public class AStar {
 		Terrain pathpoint = new Terrain();
 		pathpoint = goal;
 		path.push(pathpoint);
-		
 		while(pathpoint.equals(start)){
 			Terrain temp = new Terrain();
 			temp = goal.from;
