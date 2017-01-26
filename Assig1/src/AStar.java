@@ -3,7 +3,8 @@ import java.util.PriorityQueue;
 
 public class AStar {
 	
-	static PriorityQueue frontier = new PriorityQueue<Terrain>();	
+	static PriorityQueue<QueueType> frontier = new PriorityQueue<QueueType>();	
+	static int expended = 0;
 	
 	public static void main(String[] args) {
 		
@@ -17,9 +18,11 @@ public class AStar {
 		Terrain start = new_world.startTerrain;
 		Terrain goal = new_world.goalTerrain;
 		Terrain current = start;
+		current.direction = "north";
+		Heuristic heu = new Heuristic(); 
+		QueueType strt = new QueueType(start, heu.findHeuristic(4, start, goal));
 		
-		
-		frontier.add(start);
+		frontier.add(strt);
 		
 		while(current.equals(goal)) {
 			
@@ -46,28 +49,30 @@ public class AStar {
 		if(current.up != null){
 			Terrain up = new Terrain();
 			up = current.up;
-			if(!(up.isClosed) && !(up.isUnNav)){
+			if(!(up.isClosed) || !(up.isUnNav)){
 				up.time_consumed = cost.findCost(current, up).action_cost+current.time_consumed;
 				up.from = current;
 				up.action = cost.findCost(current, up);
 				up.heuristic = heu.findHeuristic(4, up, goal);
 				up.direction = "north";
-				QueueType qup = new QueueType(up,(up.heuristic));
+				QueueType qup = new QueueType(up,(up.heuristic+up.time_consumed));
 				frontier.add(qup);
+				expended++;
 			}
 			
 			if(current.up.up != null){				
 				if(current.up.up.up != null){
 					Terrain upleap = new Terrain();
 					upleap = current.up.up.up;
-					if(!(upleap.isClosed) && !(upleap.isUnNav)){
+					if(!(upleap.isClosed) || !(upleap.isUnNav)){
 						upleap.time_consumed = cost.findCost(current, upleap).action_cost+current.time_consumed;
 						upleap.from = current;
 						upleap.action = cost.findCost(current, upleap);
 						upleap.heuristic = heu.findHeuristic(4, upleap, goal);
 						upleap.direction = "north";		
-						QueueType qupleap = new QueueType(upleap,(upleap.heuristic));
+						QueueType qupleap = new QueueType(upleap,(upleap.heuristic+upleap.time_consumed));
 						frontier.add(qupleap);
+						expended++;
 					}
 					
 				}
@@ -76,28 +81,30 @@ public class AStar {
 		}if(current.down != null){
 			Terrain down = new Terrain();
 			down = current.down;
-			if(!(down.isClosed) && !(down.isUnNav)){
+			if(!(down.isClosed) || !(down.isUnNav)){
 				down.time_consumed = cost.findCost(current, down).action_cost+current.time_consumed;
 				down.from = current;
 				down.action = cost.findCost(current, down);
 				down.heuristic = heu.findHeuristic(4, down, goal);
 				down.direction = "south";
-				QueueType qdown = new QueueType(down,(down.heuristic));
+				QueueType qdown = new QueueType(down,(down.heuristic+down.time_consumed));
 				frontier.add(qdown);
+				expended++;
 			}
 			
 			if(current.down.down != null){				
 				if(current.down.down.down != null){
 					Terrain downleap = new Terrain();
 					downleap = current.down.down.down;
-					if(!(downleap.isClosed) && !(current.down.down.down.isUnNav)){
+					if(!(downleap.isClosed) || !(downleap.isUnNav)){
 						downleap.time_consumed = cost.findCost(current, downleap).action_cost+current.time_consumed;
 						downleap.from = current;
 						downleap.action = cost.findCost(current, downleap);
 						downleap.heuristic = heu.findHeuristic(4, downleap, goal);
 						downleap.direction = "south";
-						QueueType qdownleap = new QueueType(downleap,(downleap.heuristic));
+						QueueType qdownleap = new QueueType(downleap,(downleap.heuristic+downleap.time_consumed));
 						frontier.add(qdownleap);
+						expended++;
 					}
 					
 				}
@@ -105,48 +112,61 @@ public class AStar {
 			
 		}if(current.left != null){
 			Terrain left = new Terrain();
-			
-			if(!(current.left.isClosed) && !(current.left.isUnNav)){
-				current.left.time_consumed = cost.findCost(current, current.left).action_cost+current.time_consumed;
-				current.left.from = current;
-				current.left.action = cost.findCost(current, current.left);
-				current.left.heuristic = heu.findHeuristic(4, current.left, goal);
-				current.left.direction = "west";
-				frontier.add(current.left);
+			left = current.left;
+			if(!(left.isClosed) || !(left.isUnNav)){
+				left.time_consumed = cost.findCost(current, left).action_cost+current.time_consumed;
+				left.from = current;
+				left.action = cost.findCost(current, left);
+				left.heuristic = heu.findHeuristic(4, left, goal);
+				left.direction = "west";
+				QueueType qleft = new QueueType(left,(left.heuristic+left.time_consumed));
+				frontier.add(qleft);
+				expended++;
 			}
 			
 			if(current.left.left != null){				
 				if(current.left.left.left != null){
-					if(!(current.left.left.left.isClosed) && !(current.left.left.left.isUnNav)){
-						current.left.left.left.time_consumed = cost.findCost(current, current.left.left.left).action_cost+current.time_consumed;
-						current.left.left.left.from = current;
-						current.left.left.left.action = cost.findCost(current, current.left.left.left);
-						current.left.left.left.heuristic = heu.findHeuristic(4, current.left.left.left, goal);
-						current.left.left.left.direction = "west";
-						frontier.add(current.left.left.left);
+					Terrain leftleap = new Terrain();
+					leftleap = current.left.left.left;
+					if(!(leftleap.isClosed) || !(leftleap.isUnNav)){
+						leftleap.time_consumed = cost.findCost(current, leftleap).action_cost+current.time_consumed;
+						leftleap.from = current;
+						leftleap.action = cost.findCost(current, leftleap);
+						leftleap.heuristic = heu.findHeuristic(4, leftleap, goal);
+						leftleap.direction = "west";
+						QueueType qleftleap = new QueueType(leftleap,(leftleap.heuristic+leftleap.time_consumed));
+						frontier.add(qleftleap);
+						expended++;
 					}
 				}
 			}
 			
 		}if(current.right != null){
-			if(!(current.right.isClosed) && !(current.right.isUnNav)){
-				current.right.time_consumed = cost.findCost(current, current.right).action_cost+current.time_consumed;
-				current.right.from = current;
-				current.right.action = cost.findCost(current, current.right);
-				current.right.heuristic = heu.findHeuristic(4, current.right, goal);
-				current.right.direction = "east";
-				frontier.add(current.right);
+			Terrain right = new Terrain();
+			right = current.right;
+			if(!(right.isClosed) || !(right.isUnNav)){
+				right.time_consumed = cost.findCost(current, right).action_cost+current.time_consumed;
+				right.from = current;
+				right.action = cost.findCost(current, right);
+				right.heuristic = heu.findHeuristic(4, right, goal);
+				right.direction = "east";
+				QueueType qright = new QueueType(right,(right.heuristic+right.time_consumed));
+				frontier.add(qright);
+				expended++;
 			}
 			
 			if(current.right.right != null){				
 				if(current.right.right.right != null){
-					if(!(current.right.right.right.isClosed) && !(current.right.right.right.isUnNav)){
-						current.right.right.right.time_consumed = cost.findCost(current, current.right.right.right).action_cost+current.time_consumed;
-						current.right.right.right.from = current;
-						current.right.right.right.action = cost.findCost(current, current.right.right.right);
-						current.right.right.right.heuristic = heu.findHeuristic(4, current.right.right.right, goal);
-						current.right.right.right.direction = "east";
-						frontier.add(current.right.right.right);
+					Terrain rightleap = current.right.right.right;
+					if(!(rightleap.isClosed) || !(rightleap.isUnNav)){
+						rightleap.time_consumed = cost.findCost(current, rightleap).action_cost+current.time_consumed;
+						rightleap.from = current;
+						rightleap.action = cost.findCost(current, rightleap);
+						rightleap.heuristic = heu.findHeuristic(4, rightleap, goal);
+						rightleap.direction = "east";
+						QueueType qrightleap = new QueueType(right,(rightleap.heuristic+rightleap.time_consumed));
+						frontier.add(qrightleap);
+						expended++;
 					}
 					
 				}
