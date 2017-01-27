@@ -87,29 +87,6 @@ public class AStar {
 		
 		while (path.isEmpty() == false) {
 			Terrain temp = path.pop();
-			ActionToTake temp_action = temp.action;
-			
-			if (temp_action.orient_move != null) {
-				if (temp_action.orient_move.equals("left")) {
-					System.out.println("Turn Left");
-				} else if (temp_action.orient_move.equals("right")) {
-					System.out.println("Turn right");
-				} else if (temp_action.orient_move.equals("left-left")) {
-					System.out.println("Turn left");
-					System.out.println("Turn left");
-				} else {
-					
-				}
-			}
-			
-			if (temp_action.straight_move != null) {
-				if (temp_action.straight_move.equals("forward")) {
-					System.out.println("Forward");
-				} else {
-					System.out.println("Leap");
-				}
-			}
-			
 			System.out.println("row: " + temp.row_num + " " + "col: " + temp.col_num);
 			System.out.println(temp.action);
 			System.out.println("------>");

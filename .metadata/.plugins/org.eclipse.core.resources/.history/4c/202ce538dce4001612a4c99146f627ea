@@ -85,6 +85,8 @@ public class AStar {
 
 		}
 		
+		Stack<Terrain> new_stack = new Stack<Terrain>();
+		
 		while (path.isEmpty() == false) {
 			Terrain temp = path.pop();
 			ActionToTake temp_action = temp.action;
