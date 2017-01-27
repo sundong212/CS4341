@@ -77,6 +77,9 @@ public class AStar {
 			frontier.add(flip.pop());
 		}
 	}
+
+	
+	
 	
 	
 	
@@ -95,6 +98,7 @@ public class AStar {
 				up.action = cost.findCost(current, up);
 				up.heuristic = heu.findHeuristic(4, up, goal);
 				up.direction = "north";
+				
 				QueueType qup = new QueueType(up,(up.heuristic+up.time_consumed));
 				frontier.add(qup);
 				expended++;
