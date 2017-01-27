@@ -56,13 +56,6 @@ public class AStar {
 			path.push(temp);
 		}
 		
-		while (path.isEmpty() == false) {
-			Terrain temp = path.pop();
-			System.out.println("row: " + temp.row_num + " " + "col: " + temp.col_num);
-			System.out.println(temp.action);
-			System.out.println("------>");
-		}
-		
 	}
 	
 

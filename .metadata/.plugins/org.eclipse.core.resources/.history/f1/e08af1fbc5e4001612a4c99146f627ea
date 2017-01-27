@@ -56,16 +56,31 @@ public class AStar {
 			path.push(temp);
 		}
 		
-		while (path.isEmpty() == false) {
-			Terrain temp = path.pop();
-			System.out.println("row: " + temp.row_num + " " + "col: " + temp.col_num);
-			System.out.println(temp.action);
-			System.out.println("------>");
-		}
-		
 	}
 	
+	
+	
+//	private static void deleteRepeat(Terrain c){
+//		Stack<QueueType> flip = new Stack<QueueType>();			
+//		QueueType temp = new QueueType();
+//		temp = frontier.poll();
+//		while(!frontier.isEmpty()){
+//			if(temp.terrain_inside.row_num != c.row_num || temp.terrain_inside.col_num != c.col_num){
+//				flip.push(temp);				
+//			}
+//			temp = frontier.poll();
+//		}
+//		while(!flip.isEmpty()){
+//			frontier.add(flip.pop());
+//		}
+//	}
 
+	
+	
+	
+	
+	
+	
 	private static void createFrontier(Terrain current, Terrain goal) {
 		
 		Cost cost = new Cost();
