@@ -41,8 +41,6 @@ int z = 0;
 			createFrontier(current, goal);
 
 //System.out.println(frontier.size());			
-
-			
 			
 			QueueType qcurrent = frontier.poll();
 			DeleteQueueType temp = new DeleteQueueType();
@@ -59,26 +57,16 @@ int z = 0;
 			new_world.all_terrains.get(current.row_num).get(current.col_num).action = current.action;
 			current = frontier.peek().terrain_inside;			
 		}
-
-System.out.println(frontier.size());		
 		
 		Stack<Terrain> path = new Stack<Terrain>();
 		Terrain pathpoint = new Terrain();
 		pathpoint = goal;
 		path.push(pathpoint);
 		
-		
-		
-		while(!pathpoint.equals(start)){
+		while(pathpoint.equals(start)){
 			Terrain temp = new Terrain();
-			temp = pathpoint.from;
-			path.push(temp);			
-			
-			pathpoint = temp;
-			
-System.out.println("push seccuess: " + temp.col_num + "" + temp.row_num);
-
-
+			temp = goal.from;
+			path.push(temp);
 		}
 		
 		while (path.isEmpty() == false) {

@@ -28,27 +28,12 @@ public class AStar {
 		QueueType strt = new QueueType(start, heu.findHeuristic(4, start, goal));
 		frontier.add(strt);
 		
-System.out.println(frontier.size());	
-		
-int z = 0;			
-		
 		while(new_world.goalTerrain.from == null) {
-//
-//z++;		
-//System.out.println("main while");	
-//System.out.println(z);
 			
 			createFrontier(current, goal);
-
-//System.out.println(frontier.size());			
-
-			
 			
 			QueueType qcurrent = frontier.poll();
 			DeleteQueueType temp = new DeleteQueueType();
-			
-//System.out.println(frontier.peek().terrain_inside.col_num + " " + frontier.peek().terrain_inside.row_num);		
-
 			temp.delete(frontier, qcurrent.terrain_inside.row_num, qcurrent.terrain_inside.col_num);
 			
 			new_world.all_terrains.get(current.row_num).get(current.col_num).heuristic = current.heuristic;
@@ -59,26 +44,16 @@ int z = 0;
 			new_world.all_terrains.get(current.row_num).get(current.col_num).action = current.action;
 			current = frontier.peek().terrain_inside;			
 		}
-
-System.out.println(frontier.size());		
 		
 		Stack<Terrain> path = new Stack<Terrain>();
 		Terrain pathpoint = new Terrain();
 		pathpoint = goal;
 		path.push(pathpoint);
 		
-		
-		
-		while(!pathpoint.equals(start)){
+		while(pathpoint.equals(start)){
 			Terrain temp = new Terrain();
-			temp = pathpoint.from;
-			path.push(temp);			
-			
-			pathpoint = temp;
-			
-System.out.println("push seccuess: " + temp.col_num + "" + temp.row_num);
-
-
+			temp = goal.from;
+			path.push(temp);
 		}
 		
 		while (path.isEmpty() == false) {
@@ -99,8 +74,7 @@ System.out.println("push seccuess: " + temp.col_num + "" + temp.row_num);
 		if(current.up != null){
 			Terrain up = new Terrain();
 			up = current.up;
-			
-			if(!(up.isClosed) && !(up.isUnNav)){
+			if(!(up.isClosed) || !(up.isUnNav)){
 				up.time_consumed = cost.findCost(current, up).action_cost+current.time_consumed;
 				up.from = current;
 				up.action = cost.findCost(current, up);
@@ -116,7 +90,7 @@ System.out.println("push seccuess: " + temp.col_num + "" + temp.row_num);
 				if(current.up.up.up != null){
 					Terrain upleap = new Terrain();
 					upleap = current.up.up.up;
-					if(!(upleap.isClosed) && !(upleap.isUnNav)){
+					if(!(upleap.isClosed) || !(upleap.isUnNav)){
 						upleap.time_consumed = cost.findCost(current, upleap).action_cost+current.time_consumed;
 						upleap.from = current;
 						upleap.action = cost.findCost(current, upleap);
@@ -133,7 +107,7 @@ System.out.println("push seccuess: " + temp.col_num + "" + temp.row_num);
 		}if(current.down != null){
 			Terrain down = new Terrain();
 			down = current.down;
-			if(!(down.isClosed) && !(down.isUnNav)){
+			if(!(down.isClosed) || !(down.isUnNav)){
 				down.time_consumed = cost.findCost(current, down).action_cost+current.time_consumed;
 				down.from = current;
 				down.action = cost.findCost(current, down);
@@ -148,7 +122,7 @@ System.out.println("push seccuess: " + temp.col_num + "" + temp.row_num);
 				if(current.down.down.down != null){
 					Terrain downleap = new Terrain();
 					downleap = current.down.down.down;
-					if(!(downleap.isClosed) && !(downleap.isUnNav)){
+					if(!(downleap.isClosed) || !(downleap.isUnNav)){
 						downleap.time_consumed = cost.findCost(current, downleap).action_cost+current.time_consumed;
 						downleap.from = current;
 						downleap.action = cost.findCost(current, downleap);
@@ -165,7 +139,7 @@ System.out.println("push seccuess: " + temp.col_num + "" + temp.row_num);
 		}if(current.left != null){
 			Terrain left = new Terrain();
 			left = current.left;
-			if(!(left.isClosed) && !(left.isUnNav)){
+			if(!(left.isClosed) || !(left.isUnNav)){
 				left.time_consumed = cost.findCost(current, left).action_cost+current.time_consumed;
 				left.from = current;
 				left.action = cost.findCost(current, left);
@@ -180,7 +154,7 @@ System.out.println("push seccuess: " + temp.col_num + "" + temp.row_num);
 				if(current.left.left.left != null){
 					Terrain leftleap = new Terrain();
 					leftleap = current.left.left.left;
-					if(!(leftleap.isClosed) && !(leftleap.isUnNav)){
+					if(!(leftleap.isClosed) || !(leftleap.isUnNav)){
 						leftleap.time_consumed = cost.findCost(current, leftleap).action_cost+current.time_consumed;
 						leftleap.from = current;
 						leftleap.action = cost.findCost(current, leftleap);
@@ -196,7 +170,7 @@ System.out.println("push seccuess: " + temp.col_num + "" + temp.row_num);
 		}if(current.right != null){
 			Terrain right = new Terrain();
 			right = current.right;
-			if(!(right.isClosed) && !(right.isUnNav)){
+			if(!(right.isClosed) || !(right.isUnNav)){
 				right.time_consumed = cost.findCost(current, right).action_cost+current.time_consumed;
 				right.from = current;
 				right.action = cost.findCost(current, right);
@@ -210,7 +184,7 @@ System.out.println("push seccuess: " + temp.col_num + "" + temp.row_num);
 			if(current.right.right != null){				
 				if(current.right.right.right != null){
 					Terrain rightleap = current.right.right.right;
-					if(!(rightleap.isClosed) && !(rightleap.isUnNav)){
+					if(!(rightleap.isClosed) || !(rightleap.isUnNav)){
 						rightleap.time_consumed = cost.findCost(current, rightleap).action_cost+current.time_consumed;
 						rightleap.from = current;
 						rightleap.action = cost.findCost(current, rightleap);

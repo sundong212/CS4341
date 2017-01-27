@@ -71,14 +71,8 @@ System.out.println(frontier.size());
 		
 		while(!pathpoint.equals(start)){
 			Terrain temp = new Terrain();
-			temp = pathpoint.from;
-			path.push(temp);			
-			
-			pathpoint = temp;
-			
-System.out.println("push seccuess: " + temp.col_num + "" + temp.row_num);
-
-
+			temp = goal.from;
+			path.push(temp);
 		}
 		
 		while (path.isEmpty() == false) {
