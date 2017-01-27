@@ -7,19 +7,29 @@ public class Heuristic {
 		int y = goal.row_num-current.row_num;
 		int result = 0;
 		int direction;
+		int degree;
+		if(x == 0){
+			if(y>0){
+				degree = 0;
+			}else{
+				degree = 180;
+				}
+			
+		}else{		
 		
-		int degree = (int) Math.toDegrees(Math.atan(y/x));
-		if(current.equals("north")){
-			result = 90;
-		}
-		else if(current.equals("west")){
-			result = 180;
-		}
-		else if(current.equals("south")){
-			result = -90;
-		}
-		else{
-			result = 0;
+			degree = (int) Math.toDegrees(Math.atan(y/x));
+			if(current.equals("north")){
+				result = 90;
+			}
+			else if(current.equals("west")){
+				result = 180;
+			}
+			else if(current.equals("south")){
+				result = -90;
+			}
+			else{
+				result = 0;
+			}
 		}
 		
 		
@@ -83,7 +93,7 @@ public class Heuristic {
 				return -1; //drive into wall
 			}
 			
-			return Math.abs(goal.col_num-current.col_num)+Math.abs(goal.row_num-current.row_num)+1/3*direction;
+			return (int) (Math.abs(goal.col_num-current.col_num)+Math.abs(goal.row_num-current.row_num)+direction*Math.ceil(current.complexity/3.0));
 			
 
 		default: // case 6
@@ -97,7 +107,7 @@ public class Heuristic {
 			}
 			
 			
-			return 3*(Math.abs(goal.col_num-current.col_num)+Math.abs(goal.row_num-current.row_num)+1/3*direction);
+			return 3*(int) (Math.abs(goal.col_num-current.col_num)+Math.abs(goal.row_num-current.row_num)+direction*Math.ceil(current.complexity/3.0));
 		}
 	}
 }
