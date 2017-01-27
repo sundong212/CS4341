@@ -36,7 +36,6 @@ public class AStar {
 //			frontier.remove(qcurrent);////wen ti//
 //			deleteRepeat(current);
 //			
-			// order?????
 			QueueType qcurrent = frontier.poll();
 			DeleteQueueType temp = new DeleteQueueType();
 			temp.delete(frontier, qcurrent.terrain_inside.row_num, qcurrent.terrain_inside.col_num);
