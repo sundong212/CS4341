@@ -10,6 +10,8 @@ public class DeleteQueueType {
 		for(QueueType e : queue) {
 			if ((e.terrain_inside.col_num != col) && (e.terrain_inside.row_num != row)) {
 				final_queue.add(e);
+			}else{
+				e.terrain_inside.isClosed = true;
 			}
 		}
 		
