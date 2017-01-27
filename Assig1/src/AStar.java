@@ -30,6 +30,7 @@ public class AStar {
 		
 //System.out.println(frontier.size());	
 		
+		System.out.println("Start");
 		
 		
 		while(new_world.goalTerrain.from == null) {
@@ -37,14 +38,14 @@ public class AStar {
 //z++;		
 //System.out.println("main while");	
 //System.out.println(z);
-			
+			System.out.println("size="+frontier.size());
 			createFrontier(current, goal);
 
 //System.out.println(frontier.size());			
-
+			System.out.println("size="+frontier.size());
 			
 			
-			QueueType qcurrent = frontier.poll();
+			QueueType qcurrent = frontier.peek();
 			DeleteQueueType temp = new DeleteQueueType();
 			
 //System.out.println(frontier.peek().terrain_inside.col_num + " " + frontier.peek().terrain_inside.row_num);
@@ -54,7 +55,7 @@ public class AStar {
 			
 			temp.delete(frontier, qcurrent.terrain_inside.row_num, qcurrent.terrain_inside.col_num);
 		
-
+			System.out.println("size="+frontier.size());
 			new_world.all_terrains.get(current.row_num).get(current.col_num).heuristic = current.heuristic;
 			new_world.all_terrains.get(current.row_num).get(current.col_num).time_consumed = current.time_consumed;
 			new_world.all_terrains.get(current.row_num).get(current.col_num).action = current.action;
@@ -117,7 +118,7 @@ public class AStar {
 			}
 			
 			System.out.println("row: " + temp.row_num + " " + "col: " + temp.col_num);
-			System.out.println(temp.action);
+			//System.out.println(temp.action);
 			System.out.println("------>");
 		}
 		
