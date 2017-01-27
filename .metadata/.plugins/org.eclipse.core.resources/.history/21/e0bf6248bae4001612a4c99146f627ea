@@ -11,7 +11,7 @@ public class AStar {
 	static int expended = 0;
 	
 	public static void main(String[] args) {
-		
+	
 		World new_world = new World(args);
 		
 		ConstructWorld constructed_world = new ConstructWorld(new_world);
@@ -32,6 +32,11 @@ public class AStar {
 			
 			createFrontier(current, goal);
 			
+//			QueueType qcurrent = new QueueType(current, current.time_consumed+current.heuristic);
+//			frontier.remove(qcurrent);////wen ti//
+//			deleteRepeat(current);
+//			
+			// order?????
 			QueueType qcurrent = frontier.poll();
 			DeleteQueueType temp = new DeleteQueueType();
 			temp.delete(frontier, qcurrent.terrain_inside.row_num, qcurrent.terrain_inside.col_num);
