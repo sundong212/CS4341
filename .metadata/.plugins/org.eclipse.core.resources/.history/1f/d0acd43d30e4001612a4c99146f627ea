@@ -32,13 +32,12 @@ public class AStar {
 			
 			createFrontier(current, goal);
 			
-//			QueueType qcurrent = new QueueType(current, current.time_consumed+current.heuristic);
-//			frontier.remove(qcurrent);////wen ti//
-//			deleteRepeat(current);
-//			
-			QueueType qcurrent = frontier.poll();
-			DeleteQueueType temp = new DeleteQueueType();
-			temp.delete(frontier, qcurrent.terrain_inside.row_num, qcurrent.terrain_inside.col_num);
+			QueueType qcurrent = new QueueType(current, current.time_consumed+current.heuristic);
+			frontier.remove(qcurrent);////wen ti//
+			deleteRepeat(current);
+			
+			
+			
 			
 			new_world.all_terrains.get(current.row_num).get(current.col_num).heuristic = current.heuristic;
 			new_world.all_terrains.get(current.row_num).get(current.col_num).time_consumed = current.time_consumed;
@@ -64,20 +63,20 @@ public class AStar {
 	
 	
 	
-//	private static void deleteRepeat(Terrain c){
-//		Stack<QueueType> flip = new Stack<QueueType>();			
-//		QueueType temp = new QueueType();
-//		temp = frontier.poll();
-//		while(!frontier.isEmpty()){
-//			if(temp.terrain_inside.row_num != c.row_num || temp.terrain_inside.col_num != c.col_num){
-//				flip.push(temp);				
-//			}
-//			temp = frontier.poll();
-//		}
-//		while(!flip.isEmpty()){
-//			frontier.add(flip.pop());
-//		}
-//	}
+	private static void deleteRepeat(Terrain c){
+		Stack<QueueType> flip = new Stack<QueueType>();			
+		QueueType temp = new QueueType();
+		temp = frontier.poll();
+		while(!frontier.isEmpty()){
+			if(temp.terrain_inside.row_num != c.row_num || temp.terrain_inside.col_num != c.col_num){
+				flip.push(temp);				
+			}
+			temp = frontier.poll();
+		}
+		while(!flip.isEmpty()){
+			frontier.add(flip.pop());
+		}
+	}
 
 	
 	
