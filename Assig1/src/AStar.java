@@ -21,16 +21,16 @@ public class AStar {
 		
 		Terrain start = new_world.startTerrain;
 		Terrain goal = new_world.goalTerrain;
-
+		start.complexity = 1;
 		Terrain current = start;
 		current.direction = "north";
 		Heuristic heu = new Heuristic(); 
 		QueueType strt = new QueueType(start, heu.findHeuristic(4, start, goal));
 		frontier.add(strt);
 		
-System.out.println(frontier.size());	
+//System.out.println(frontier.size());	
 		
-int z = 0;			
+		
 		
 		while(new_world.goalTerrain.from == null) {
 //
@@ -48,19 +48,20 @@ int z = 0;
 			DeleteQueueType temp = new DeleteQueueType();
 			
 //System.out.println(frontier.peek().terrain_inside.col_num + " " + frontier.peek().terrain_inside.row_num);		
-
+			System.out.println("queuesize  "+frontier.size());
 			temp.delete(frontier, qcurrent.terrain_inside.row_num, qcurrent.terrain_inside.col_num);
-			
+		
 			new_world.all_terrains.get(current.row_num).get(current.col_num).heuristic = current.heuristic;
 			new_world.all_terrains.get(current.row_num).get(current.col_num).time_consumed = current.time_consumed;
 			new_world.all_terrains.get(current.row_num).get(current.col_num).action = current.action;
 			new_world.all_terrains.get(current.row_num).get(current.col_num).from = current.from;
 			new_world.all_terrains.get(current.row_num).get(current.col_num).isClosed = true;
 			new_world.all_terrains.get(current.row_num).get(current.col_num).action = current.action;
+			System.out.println(current.time_consumed);
 			current = frontier.peek().terrain_inside;			
 		}
 
-System.out.println(frontier.size());		
+//System.out.println(frontier.size());		
 		
 		Stack<Terrain> path = new Stack<Terrain>();
 		Terrain pathpoint = new Terrain();
@@ -76,17 +77,21 @@ System.out.println(frontier.size());
 			
 			pathpoint = temp;
 			
-System.out.println("push seccuess: " + temp.col_num + "" + temp.row_num);
+//System.out.println("push seccuess: " + temp.col_num + "" + temp.row_num);
 
 
 		}
 		
 		while (path.isEmpty() == false) {
 			Terrain temp = path.pop();
-			System.out.println("row: " + temp.row_num + " " + "col: " + temp.col_num);
-			System.out.println(temp.action);
+//			System.out.println("row: " + temp.row_num + " " + "col: " + temp.col_num);
+//			System.out.println(temp.action);
 			System.out.println("------>");
 		}
+		
+		System.out.println("Score:"+goal.time_consumed);
+		System.out.println("Number of nodes expanded:"+expended);
+		
 		
 	}
 	
@@ -110,6 +115,7 @@ System.out.println("push seccuess: " + temp.col_num + "" + temp.row_num);
 				QueueType qup = new QueueType(up,(up.heuristic+up.time_consumed));
 				frontier.add(qup);
 				expended++;
+//System.out.println(up.time_consumed-current.time_consumed);
 			}
 			
 			if(current.up.up != null){				
@@ -125,6 +131,7 @@ System.out.println("push seccuess: " + temp.col_num + "" + temp.row_num);
 						QueueType qupleap = new QueueType(upleap,(upleap.heuristic+upleap.time_consumed));
 						frontier.add(qupleap);
 						expended++;
+//System.out.println(upleap.time_consumed-current.time_consumed);
 					}
 					
 				}
@@ -142,6 +149,7 @@ System.out.println("push seccuess: " + temp.col_num + "" + temp.row_num);
 				QueueType qdown = new QueueType(down,(down.heuristic+down.time_consumed));
 				frontier.add(qdown);
 				expended++;
+//System.out.println(down.time_consumed-current.time_consumed);
 			}
 			
 			if(current.down.down != null){				
@@ -157,6 +165,7 @@ System.out.println("push seccuess: " + temp.col_num + "" + temp.row_num);
 						QueueType qdownleap = new QueueType(downleap,(downleap.heuristic+downleap.time_consumed));
 						frontier.add(qdownleap);
 						expended++;
+//System.out.println(downleap.time_consumed-current.time_consumed);
 					}
 					
 				}
@@ -174,6 +183,7 @@ System.out.println("push seccuess: " + temp.col_num + "" + temp.row_num);
 				QueueType qleft = new QueueType(left,(left.heuristic+left.time_consumed));
 				frontier.add(qleft);
 				expended++;
+//System.out.println(left.time_consumed-current.time_consumed);			
 			}
 			
 			if(current.left.left != null){				
@@ -189,6 +199,7 @@ System.out.println("push seccuess: " + temp.col_num + "" + temp.row_num);
 						QueueType qleftleap = new QueueType(leftleap,(leftleap.heuristic+leftleap.time_consumed));
 						frontier.add(qleftleap);
 						expended++;
+//System.out.println(leftleap.time_consumed-current.time_consumed);
 					}
 				}
 			}
@@ -205,6 +216,7 @@ System.out.println("push seccuess: " + temp.col_num + "" + temp.row_num);
 				QueueType qright = new QueueType(right,(right.heuristic+right.time_consumed));
 				frontier.add(qright);
 				expended++;
+//System.out.println(right.time_consumed-current.time_consumed);
 			}
 			
 			if(current.right.right != null){				
@@ -219,6 +231,7 @@ System.out.println("push seccuess: " + temp.col_num + "" + temp.row_num);
 						QueueType qrightleap = new QueueType(right,(rightleap.heuristic+rightleap.time_consumed));
 						frontier.add(qrightleap);
 						expended++;
+//System.out.println(rightleap.time_consumed-current.time_consumed);
 					}
 					
 				}

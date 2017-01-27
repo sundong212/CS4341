@@ -22,7 +22,7 @@ public class Terrain {
 		this.isGoal = false;
 		this.isUnNav = false;
 		this.isClosed = false;
-		this.complexity = -1;
+		this.complexity = 0;
 		this.row_num = -1;
 		this.col_num = -1;
 		this.time_consumed = 0;
