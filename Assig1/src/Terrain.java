@@ -26,7 +26,7 @@ public class Terrain {
 		this.row_num = -1;
 		this.col_num = -1;
 		this.time_consumed = 0;
-		this.heuristic = -1;
+		this.heuristic = 0;
 		this.direction = null;
 		this.up = null;
 		this.down = null;

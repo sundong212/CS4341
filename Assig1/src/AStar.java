@@ -54,14 +54,20 @@ public class AStar {
 			
 			temp.delete(frontier, qcurrent.terrain_inside.row_num, qcurrent.terrain_inside.col_num);
 		
+
 			new_world.all_terrains.get(current.row_num).get(current.col_num).heuristic = current.heuristic;
 			new_world.all_terrains.get(current.row_num).get(current.col_num).time_consumed = current.time_consumed;
 			new_world.all_terrains.get(current.row_num).get(current.col_num).action = current.action;
 			new_world.all_terrains.get(current.row_num).get(current.col_num).from = current.from;
 			new_world.all_terrains.get(current.row_num).get(current.col_num).isClosed = true;
 			new_world.all_terrains.get(current.row_num).get(current.col_num).action = current.action;
-			System.out.println(current.time_consumed);
-			current = frontier.peek().terrain_inside;			
+			
+			System.out.println("main");
+			System.out.println(current.col_num+"   "+current.row_num);
+			System.out.println(current.time_consumed+"  "+current.heuristic);
+			System.out.println("size="+frontier.size());
+			current = frontier.poll().terrain_inside;			
+			
 		}
 
 //System.out.println(frontier.size());		
