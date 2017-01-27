@@ -1,0 +1,19 @@
+import java.util.Stack;
+
+public class PrintAction {
+	public void printPath(Stack<Terrain> stack) {
+		Terrain temp_terrain = stack.pop();
+		ActionToTake temp_action = temp_terrain.action;
+		
+		if (temp_action.orient_move != null) {
+			if (temp_action.orient_move.equals("left")) {
+				System.out.println("Turn Left");
+			}
+		}
+		
+		if () {
+			
+		}
+
+	}
+}
