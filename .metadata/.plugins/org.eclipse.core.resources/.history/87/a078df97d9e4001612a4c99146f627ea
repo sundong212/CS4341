@@ -8,12 +8,10 @@ public class DeleteQueueType {
 		
 		
 		for(QueueType e : queue) {
-			if ((e.terrain_inside.col_num != col) && (e.terrain_inside.row_num != row)) {
-				final_queue.add(e);
+			if ((e.terrain_inside.col_num == col) && (e.terrain_inside.row_num == row)) {
+				queue.remove(e);
 			}
 		}
-		
-		queue = final_queue;
 
 	}
 }

@@ -47,11 +47,8 @@ public class AStar {
 			QueueType qcurrent = frontier.poll();
 			DeleteQueueType temp = new DeleteQueueType();
 			
-//System.out.println(frontier.peek().terrain_inside.col_num + " " + frontier.peek().terrain_inside.row_num);
-			
-//System.out.println("queuesize  "+frontier.size());
-			
-			
+//System.out.println(frontier.peek().terrain_inside.col_num + " " + frontier.peek().terrain_inside.row_num);		
+			System.out.println("queuesize  "+frontier.size());
 			temp.delete(frontier, qcurrent.terrain_inside.row_num, qcurrent.terrain_inside.col_num);
 		
 			new_world.all_terrains.get(current.row_num).get(current.col_num).heuristic = current.heuristic;
@@ -87,8 +84,8 @@ public class AStar {
 		
 		while (path.isEmpty() == false) {
 			Terrain temp = path.pop();
-			System.out.println("row: " + temp.row_num + " " + "col: " + temp.col_num);
-			System.out.println(temp.action);
+//			System.out.println("row: " + temp.row_num + " " + "col: " + temp.col_num);
+//			System.out.println(temp.action);
 			System.out.println("------>");
 		}
 		
