@@ -9,7 +9,7 @@ public class AStar {
 	
 	static PriorityQueue<QueueType> frontier = new PriorityQueue<QueueType>(11,comparator);	
 	static int expended = 0;
-	static int heur =1;
+	static int heur = 4;
 	
 	public static void main(String[] args) {
 		
@@ -23,7 +23,6 @@ public class AStar {
 		Terrain start = new_world.startTerrain;
 		Terrain goal = new_world.goalTerrain;
 		start.complexity = 1;
-		
 		Terrain current = start;
 		current.direction = "north";
 		Heuristic heu = new Heuristic(); 
@@ -50,7 +49,6 @@ public class AStar {
 //System.out.println("queuesize  "+frontier.size());
 			
 			
-
 			temp.delete(frontier, qcurrent.terrain_inside.row_num, qcurrent.terrain_inside.col_num);
 
 			new_world.all_terrains.get(current.row_num).get(current.col_num).heuristic = current.heuristic;
@@ -62,12 +60,6 @@ public class AStar {
 			
 			
 			current = frontier.poll().terrain_inside;			
-//			System.out.println("dd");
-//			System.out.println(current.col_num+"  "+current.row_num);
-//			System.out.println(goal.col_num+"   "+goal.row_num);
-//			if(current.col_num == 26 && current.row_num == 11){
-//				System.out.println("s");
-//			}
 			
 		}
 
@@ -89,9 +81,8 @@ public class AStar {
 			
 //System.out.println("push seccuess: " + temp.col_num + "" + temp.row_num);
 
-			
+
 		}
-		
 		
 		int action_take = 0;
 		
@@ -134,7 +125,7 @@ public class AStar {
 		System.out.println("Score:"+(500-goal.time_consumed));
 		System.out.println("Number of nodes expanded:"+expended);
 		System.out.println("Action to take:"+action_take);
-		double branch = Math.pow((double)expended, 1/((double)action_take+1.0));
+		double branch = Math.pow(expended, 1/(action_take+1));
 		System.out.println(branch);
 		
 		
