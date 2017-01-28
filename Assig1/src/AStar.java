@@ -38,32 +38,34 @@ public class AStar {
 		
 		
 		while(new_world.goalTerrain.from == null) {
+			
+			if(current.isUnNav == false){
 
-			createFrontier(current, goal);
-
-
-			
-			
-			QueueType qcurrent = frontier.peek();
-			
-			DeleteQueueType temp = new DeleteQueueType();
-			
-//System.out.println(frontier.peek().terrain_inside.col_num + " " + frontier.peek().terrain_inside.row_num);
-			
-//System.out.println("queuesize  "+frontier.size());
-			
-			
-
-			temp.delete(frontier, qcurrent.terrain_inside.row_num, qcurrent.terrain_inside.col_num);
-
-			new_world.all_terrains.get(current.row_num).get(current.col_num).heuristic = current.heuristic;
-			new_world.all_terrains.get(current.row_num).get(current.col_num).time_consumed = current.time_consumed;
-			new_world.all_terrains.get(current.row_num).get(current.col_num).action = current.action;
-			new_world.all_terrains.get(current.row_num).get(current.col_num).from = current.from;
-			new_world.all_terrains.get(current.row_num).get(current.col_num).isClosed = true;
-			new_world.all_terrains.get(current.row_num).get(current.col_num).action = current.action;
-			
-			
+				createFrontier(current, goal);
+	
+	
+				
+				
+				QueueType qcurrent = frontier.peek();
+				
+				DeleteQueueType temp = new DeleteQueueType();
+				
+	//System.out.println(frontier.peek().terrain_inside.col_num + " " + frontier.peek().terrain_inside.row_num);
+				
+	//System.out.println("queuesize  "+frontier.size());
+				
+				
+	
+				temp.delete(frontier, qcurrent.terrain_inside.row_num, qcurrent.terrain_inside.col_num);
+	
+				new_world.all_terrains.get(current.row_num).get(current.col_num).heuristic = current.heuristic;
+				new_world.all_terrains.get(current.row_num).get(current.col_num).time_consumed = current.time_consumed;
+				new_world.all_terrains.get(current.row_num).get(current.col_num).action = current.action;
+				new_world.all_terrains.get(current.row_num).get(current.col_num).from = current.from;
+				new_world.all_terrains.get(current.row_num).get(current.col_num).isClosed = true;
+				new_world.all_terrains.get(current.row_num).get(current.col_num).action = current.action;
+				
+			}
 			current = frontier.poll().terrain_inside;			
 			System.out.println("dd");
 			System.out.println(current.col_num+"  "+current.row_num);
@@ -71,6 +73,7 @@ public class AStar {
 			if(current.col_num == 26 && current.row_num == 10){
 				System.out.println("s");
 			}
+			
 			
 		}
 
