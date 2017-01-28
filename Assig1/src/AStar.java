@@ -43,6 +43,7 @@ public class AStar {
 			
 			
 			QueueType qcurrent = frontier.peek();
+			
 			DeleteQueueType temp = new DeleteQueueType();
 			
 //System.out.println(frontier.peek().terrain_inside.col_num + " " + frontier.peek().terrain_inside.row_num);
@@ -62,12 +63,12 @@ public class AStar {
 			
 			
 			current = frontier.poll().terrain_inside;			
-//			System.out.println("dd");
-//			System.out.println(current.col_num+"  "+current.row_num);
-//			System.out.println(goal.col_num+"   "+goal.row_num);
-//			if(current.col_num == 26 && current.row_num == 11){
-//				System.out.println("s");
-//			}
+			System.out.println("dd");
+			System.out.println(current.col_num+"  "+current.row_num);
+			System.out.println(goal.col_num+"   "+goal.row_num);
+			if(current.col_num == 26 && current.row_num == 10){
+				System.out.println("s");
+			}
 			
 		}
 
