@@ -9,13 +9,11 @@ public class AStar {
 	
 	static PriorityQueue<QueueType> frontier = new PriorityQueue<QueueType>(11,comparator);	
 	static int expended = 0;
-	static int heur;
+	static int heur =1;
 	
 	public static void main(String[] args) {
 		
 		World new_world = new World(args);
-		
-		heur = Integer.parseInt(args[1]);
 		
 		ConstructWorld constructed_world = new ConstructWorld(new_world);
 		constructed_world.constructWorld(new_world);
