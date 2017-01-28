@@ -9,7 +9,7 @@ public class AStar {
 	
 	static PriorityQueue<QueueType> frontier = new PriorityQueue<QueueType>(11,comparator);	
 	static int expended = 0;
-	static int heur = 2;
+	static int heur = 4;
 	
 	public static void main(String[] args) {
 		
