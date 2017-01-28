@@ -39,6 +39,7 @@ public class AStar {
 		while(new_world.goalTerrain.from == null) {
 			
 			if(current.isUnNav == false){
+				
 
 				createFrontier(current, goal);
 	
