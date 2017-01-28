@@ -11,9 +11,11 @@ public class Heuristic {
 		if(x == 0){
 			if(y>0){
 				degree = 0;
-			}else{
+			}else if(y<0){
 				degree = 180;
-				}
+			}else{
+				return 0;
+			}
 			
 		}else{		
 		
