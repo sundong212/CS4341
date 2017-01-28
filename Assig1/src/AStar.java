@@ -32,7 +32,6 @@ public class AStar {
 		QueueType strt = new QueueType(start, heu.findHeuristic(heur, start, goal));
 		frontier.add(strt);
 		
-//System.out.println(frontier.size());	
 		
 		System.out.println("Start");
 		
@@ -50,12 +49,7 @@ public class AStar {
 				
 				DeleteQueueType temp = new DeleteQueueType();
 				
-	//System.out.println(frontier.peek().terrain_inside.col_num + " " + frontier.peek().terrain_inside.row_num);
-				
-	//System.out.println("queuesize  "+frontier.size());
-				
-				
-	
+
 				temp.delete(frontier, qcurrent.terrain_inside.row_num, qcurrent.terrain_inside.col_num);
 	
 				new_world.all_terrains.get(current.row_num).get(current.col_num).heuristic = current.heuristic;
@@ -67,17 +61,11 @@ public class AStar {
 				
 			}
 			current = frontier.poll().terrain_inside;			
-			System.out.println("dd");
-			System.out.println(current.col_num+"  "+current.row_num);
-			System.out.println(goal.col_num+"   "+goal.row_num);
-			if(current.col_num == 26 && current.row_num == 10){
-				System.out.println("s");
-			}
+			
 			
 			
 		}
 
-//System.out.println(frontier.size());		
 		
 		Stack<Terrain> path = new Stack<Terrain>();
 		Terrain pathpoint = new Terrain();
@@ -92,8 +80,6 @@ public class AStar {
 			path.push(temp);			
 			
 			pathpoint = temp;
-			
-//System.out.println("push seccuess: " + temp.col_num + "" + temp.row_num);
 
 			
 		}
@@ -132,9 +118,6 @@ public class AStar {
 				}
 			}
 			
-			//System.out.println("row: " + temp.row_num + " " + "col: " + temp.col_num);
-			//System.out.println(temp.action);
-			
 		}
 		
 		System.out.println("Score:"+(500-goal.time_consumed));
@@ -167,7 +150,7 @@ public class AStar {
 				QueueType qup = new QueueType(up,(up.heuristic+up.time_consumed));
 				frontier.add(qup);
 				expended++;
-//System.out.println(up.time_consumed-current.time_consumed);
+
 			}
 			
 			if(current.up.up != null){				
@@ -183,7 +166,7 @@ public class AStar {
 						QueueType qupleap = new QueueType(upleap,(upleap.heuristic+upleap.time_consumed));
 						frontier.add(qupleap);
 						expended++;
-//System.out.println(upleap.time_consumed-current.time_consumed);
+
 					}
 					
 				}
@@ -201,7 +184,7 @@ public class AStar {
 				QueueType qdown = new QueueType(down,(down.heuristic+down.time_consumed));
 				frontier.add(qdown);
 				expended++;
-//System.out.println(down.time_consumed-current.time_consumed);
+
 			}
 			
 			if(current.down.down != null){				
@@ -217,7 +200,7 @@ public class AStar {
 						QueueType qdownleap = new QueueType(downleap,(downleap.heuristic+downleap.time_consumed));
 						frontier.add(qdownleap);
 						expended++;
-//System.out.println(downleap.time_consumed-current.time_consumed);
+
 					}
 					
 				}
@@ -235,7 +218,7 @@ public class AStar {
 				QueueType qleft = new QueueType(left,(left.heuristic+left.time_consumed));
 				frontier.add(qleft);
 				expended++;
-//System.out.println(left.time_consumed-current.time_consumed);			
+	
 			}
 			
 			if(current.left.left != null){				
@@ -251,7 +234,7 @@ public class AStar {
 						QueueType qleftleap = new QueueType(leftleap,(leftleap.heuristic+leftleap.time_consumed));
 						frontier.add(qleftleap);
 						expended++;
-//System.out.println(leftleap.time_consumed-current.time_consumed);
+
 					}
 				}
 			}
@@ -268,7 +251,7 @@ public class AStar {
 				QueueType qright = new QueueType(right,(right.heuristic+right.time_consumed));
 				frontier.add(qright);
 				expended++;
-//System.out.println(right.time_consumed-current.time_consumed);
+
 			}
 			
 			if(current.right.right != null){				
@@ -283,7 +266,7 @@ public class AStar {
 						QueueType qrightleap = new QueueType(right,(rightleap.heuristic+rightleap.time_consumed));
 						frontier.add(qrightleap);
 						expended++;
-//System.out.println(rightleap.time_consumed-current.time_consumed);
+
 					}
 					
 				}
