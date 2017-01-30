@@ -1,10 +1,6 @@
 
 public class Bin {
 
-    public Bin() {
-
-    }
-
     static public int BinOneScore(int[] bin) {
         int score = 0;
         int flag = 0;
