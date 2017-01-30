@@ -1,6 +1,45 @@
-public class BinThree {
 
-    public int findScore(int[] bin) {
+public class Bin {
+
+    public Bin() {
+
+    }
+
+    static public int BinOneScore(int[] bin) {
+        int score = 0;
+        int flag = 0;
+
+        for (int a: bin) {
+            if (flag == 0) {
+                score = score + a;
+                flag = 1;
+            } else {
+                score = score - a;
+                flag = 0;
+            }
+        }
+
+        return score;
+    }
+
+    static public int BinTwoScore(int[] bin) {
+        int score = 0;
+        int size = bin.length;
+
+        for (int i = 0; i < (size -1); i++) {
+            if (bin[i] < bin[i+1]) {
+                score = score + 3;
+            } if (bin[i] == bin[i+1]) {
+                score = score + 5;
+            } else {
+                score = score - 10;
+            }
+        }
+
+        return score;
+    }
+
+    static public int BinThreeScore(int[] bin) {
         int score = 0;
         int size = bin.length;
         int half = size/2;
@@ -44,5 +83,9 @@ public class BinThree {
         }
 
         return true;
+    }
+
+    public int findScore(int[] bin_one, int[] bin_two, int[] bin_three) {
+        return BinOneScore(bin_one) + BinTwoScore(bin_two) + BinThreeScore(bin_three);
     }
 }
