@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class Bin {
 
@@ -81,7 +82,8 @@ public class Bin {
         return true;
     }
 
-    public int findScore(int[] bin_one, int[] bin_two, int[] bin_three) {
-        return BinOneScore(bin_one) + BinTwoScore(bin_two) + BinThreeScore(bin_three);
+    public int findScore(ArrayList<int[]> all_bins) {
+        return BinOneScore(all_bins.get(0)) + BinTwoScore(all_bins.get(1)) + BinThreeScore(all_bins.get(2));
     }
+
 }

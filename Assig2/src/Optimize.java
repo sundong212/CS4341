@@ -1,5 +1,6 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.sql.SQLSyntaxErrorException;
 import java.util.Stack;
 
 public class Optimize {
@@ -33,6 +34,19 @@ public class Optimize {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+//
+//        long tStart = System.currentTimeMillis();
+//        System.out.println(tStart);
+//
+//
+//
+//        long tEnd = System.currentTimeMillis();
+//        System.out.println(tEnd);
+//
+//        long tDelta = tEnd - tStart;
+//        double elapsedSeconds = tDelta / 1000.0;
+//        System.out.println(elapsedSeconds);
 
     }
 }

@@ -4,7 +4,9 @@ import java.util.Stack;
 
 public class RandomAllocate {
 
-    public void randomAllocate(Stack<Integer> all_numbers, ArrayList<int[]> current_state) {
+    public ArrayList<int[]> randomAllocate(Stack<Integer> all_numbers) {
+
+        ArrayList<int[]> current_state = new ArrayList<>();
 
         Stack<Integer> temp_one = new Stack<>();
         Stack<Integer> temp_two = new Stack<>();
@@ -46,6 +48,8 @@ public class RandomAllocate {
         popToArray(temp_one, current_state.get(0));
         popToArray(temp_two, current_state.get(1));
         popToArray(temp_three, current_state.get(2));
+
+        return current_state;
 
     }
 
