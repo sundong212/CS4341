@@ -1,6 +1,7 @@
 import java.util.PriorityQueue;
 import java.util.Stack;
 
+//import java.util.Stack;
 
 public class AStar {
 	
@@ -18,6 +19,8 @@ public class AStar {
 		
 		ConstructWorld constructed_world = new ConstructWorld(new_world);
 		constructed_world.constructWorld(new_world);
+		
+		// till now new_world is completely constructed
 		
 		Terrain start = new_world.startTerrain;
 		Terrain goal = new_world.goalTerrain;
@@ -40,15 +43,14 @@ public class AStar {
 
 				createFrontier(current, goal);
 	
+	
+				
+				
 				QueueType qcurrent = frontier.peek();
 				
 				DeleteQueueType temp = new DeleteQueueType();
-<<<<<<< HEAD
-	
-=======
 				
 
->>>>>>> 58881d5e97988f8364e808259091e9ad4486f2d6
 				temp.delete(frontier, qcurrent.terrain_inside.row_num, qcurrent.terrain_inside.col_num);
 	
 				new_world.all_terrains.get(current.row_num).get(current.col_num).heuristic = current.heuristic;
@@ -59,19 +61,12 @@ public class AStar {
 				new_world.all_terrains.get(current.row_num).get(current.col_num).action = current.action;
 				
 			}
-<<<<<<< HEAD
-			current = frontier.poll().terrain_inside;	
-			
-		}
-	
-=======
 			current = frontier.poll().terrain_inside;			
 			
 			
 			
 		}
 
->>>>>>> 58881d5e97988f8364e808259091e9ad4486f2d6
 		
 		Stack<Terrain> path = new Stack<Terrain>();
 		Terrain pathpoint = new Terrain();
@@ -86,10 +81,7 @@ public class AStar {
 			path.push(temp);			
 			
 			pathpoint = temp;
-<<<<<<< HEAD
-=======
 
->>>>>>> 58881d5e97988f8364e808259091e9ad4486f2d6
 			
 		}
 		
@@ -127,10 +119,6 @@ public class AStar {
 				}
 			}
 			
-<<<<<<< HEAD
-			
-=======
->>>>>>> 58881d5e97988f8364e808259091e9ad4486f2d6
 		}
 		
 		System.out.println("Score:"+(500-goal.time_consumed));
@@ -231,11 +219,7 @@ public class AStar {
 				QueueType qleft = new QueueType(left,(left.heuristic+left.time_consumed));
 				frontier.add(qleft);
 				expended++;
-<<<<<<< HEAD
-		
-=======
 	
->>>>>>> 58881d5e97988f8364e808259091e9ad4486f2d6
 			}
 			
 			if(current.left.left != null){				
