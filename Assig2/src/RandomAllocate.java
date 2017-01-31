@@ -5,9 +5,11 @@ import java.util.Stack;
 public class RandomAllocate {
 
     public void randomAllocate(Stack<Integer> all_numbers, ArrayList<int[]> current_state) {
+
         Stack<Integer> temp_one = new Stack<>();
         Stack<Integer> temp_two = new Stack<>();
         Stack<Integer> temp_three = new Stack<>();
+
         int iterate = all_numbers.size() / 3;
         int bin_number = 1;
 
@@ -34,8 +36,17 @@ public class RandomAllocate {
 
         }
 
-        // not done yet
-        // depends on what we need, may need int[] or stack<Integer>
+        int bin_one[] = new int[iterate];
+        int bin_two[] = new int[iterate];
+        int bin_three[] = new int[iterate];
+        current_state.add(bin_one);
+        current_state.add(bin_two);
+        current_state.add(bin_three);
+
+        popToArray(temp_one, current_state.get(0));
+        popToArray(temp_two, current_state.get(1));
+        popToArray(temp_three, current_state.get(2));
+
     }
 
     public static void randomChoose(Stack<Integer> all_numbers, Stack<Integer> bin_number) {
@@ -49,6 +60,13 @@ public class RandomAllocate {
             }
 
             j++;
+        }
+    }
+
+    public static void popToArray(Stack<Integer> from, int[] to) {
+
+        for (int i = 0; i < to.length; i++) {
+            to[i] = from.pop();
         }
     }
 }

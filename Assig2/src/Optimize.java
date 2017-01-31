@@ -34,12 +34,5 @@ public class Optimize {
             e.printStackTrace();
         }
 
-//        int[] all_numbers = new int[all_integers.size()];
-//
-//        for (int i = 0; i < all_integers.size(); i++) {
-//            all_numbers[i] = all_integers.pop();
-//        }
-
-        // array all_numbers is now all the integers in the file
     }
 }
