@@ -1,10 +1,9 @@
 import java.util.ArrayList;
 import java.util.Stack;
-import java.util.Random;
 
 public class FHC {
 
-    public int getOptimize(Stack<Integer> all_numbers, double time) {
+    public int getOptimize(Stack<Integer> all_numbers, double time_constraint) {
 
         int count = 0;
 
@@ -15,8 +14,17 @@ public class FHC {
         GenerateSuccessor generateSuccessor = new GenerateSuccessor();
         ArrayList<int[]> current_state;
 
+        long tStart = System.currentTimeMillis();
 
-        while(true) { // TODO: add time constraint
+        while(true) {
+
+            long tEnd = System.currentTimeMillis();
+            long tDelta = tEnd - tStart;
+            double elapsedSeconds = tDelta / 1000.0;
+
+            if (elapsedSeconds >= time_constraint) {
+                break;
+            }
 
             current_state = randomAllocate.randomAllocate(all_numbers);
 
@@ -24,6 +32,16 @@ public class FHC {
 
                 if (count > 100) {
 
+                    potential_answers.push(bin.findScore(current_state));
+                    count = 0;
+                    break;
+                }
+
+                long now = System.currentTimeMillis();
+                long delta = now - tStart;
+                double elapsed = delta / 1000.0;
+
+                if (elapsed >= time_constraint) {
                     potential_answers.push(bin.findScore(current_state));
                     break;
                 }
@@ -39,22 +57,27 @@ public class FHC {
                     continue;
 
                 } else {
+
                     count++;
                     continue;
                 }
-
             }
-
-
-
         }
 
+        return find_highest(potential_answers);
 
+    }
 
+    public static int find_highest(Stack<Integer> stack) {
 
+        int temp = Integer.MIN_VALUE;
 
-        //TODO: return something
+        for (int a : stack) {
+            if (a > temp) {
+                temp = a;
+            }
+        }
 
-
+        return temp;
     }
 }
