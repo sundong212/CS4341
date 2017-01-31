@@ -1,9 +1,10 @@
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Stack;
 
 public class RandomAllocate {
 
-    public void randomAllocate(Stack<Integer> all_numbers, int[] bin_one, int[] bin_two, int[] bin_three) {
+    public void randomAllocate(Stack<Integer> all_numbers, ArrayList<int[]> current_state) {
         Stack<Integer> temp_one = new Stack<>();
         Stack<Integer> temp_two = new Stack<>();
         Stack<Integer> temp_three = new Stack<>();
