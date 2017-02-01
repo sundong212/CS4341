@@ -40,11 +40,11 @@ public class Optimize {
             int optimization = fhc.getOptimize(all_integers, timing);
             System.out.print("Best Value for FHC within " + timing + "seconds is " + optimization);
 
-
         } else if (approach.equals("SA")) {
 
-
-            //TODO:
+            SA sa = new SA();
+            int saOptimization = sa.getOptimize(all_integers, timing);
+            System.out.println("Best Value for SA within " + timing + "seconds is " + saOptimization);
 
         } else {
 

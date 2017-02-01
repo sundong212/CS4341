@@ -10,11 +10,11 @@ public class SA {
 
     public int getOptimize(Stack<Integer> all_numbers, double time_constraint) {
 
-        double temperature = 100; //TODO: need to find the best initial temperature
-        double coolingRate = 0; //TODO: need to find the best cooling rate
+        double temperature = 10000; //TODO: need to find the best initial temperature
+        double coolingRate = 0.03; //TODO: need to find the best cooling rate
 
         //Stack<Integer> potential_answers = new Stack<>();
-        int highestScore = 0;
+        int highestScore;
 
         RandomAllocate randomAllocate = new RandomAllocate();
         // initial the empty Arraylist with numbers
@@ -51,6 +51,10 @@ public class SA {
             }
 
             temperature *= 1 - coolingRate; //TODO: Schedule
+
+            if (time_constraint == 0.0) {
+                break;
+            }
         }
 
         return bin.findScore(highestState);
