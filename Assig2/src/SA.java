@@ -8,60 +8,52 @@ import java.util.Stack;
  */
 public class SA {
 
-    public static void main() {
+    public int getOptimize(Stack<Integer> all_numbers, double time_constraint) {
 
         double temperature = 100; //TODO: need to find the best initial temperature
         double coolingRate = 0; //TODO: need to find the best cooling rate
 
-        Stack<Integer> numbers = new Stack<Integer>();
+        //Stack<Integer> potential_answers = new Stack<>();
+        int highestScore = 0;
 
-        // the object to get all numbers
-        Optimize getNumbers = new Optimize();
-        numbers = getNumbers.all_integers; //TODO:
+        RandomAllocate randomAllocate = new RandomAllocate();
+        // initial the empty Arraylist with numbers
+        ArrayList<int[]> currentState = randomAllocate.randomAllocate(all_numbers);
 
-        // initial an empty arraylist that used to be modified later
-        ArrayList<int[]> initialState = new ArrayList<>();
+        // object of the bin to compute score
+        Bin bin = new Bin();
 
-        // initial the empty arraylist with numbers
-        RandomAllocate ra = new RandomAllocate(numbers, initialState); //TODO
-
-        /*public double getTemperature() {
-            return this.getTemperature();
-        }
-
-        public double getCoolingRate() {
-            return this.getCoolingRate();
-        }*/
+        // Object to get the random successor state
+        GenerateSuccessor generateSuccessor = new GenerateSuccessor();
 
         // the tracker for the highest score state
         ArrayList<int[]> highestState = new ArrayList<>();
 
         while ( temperature > 1.0 ) {
 
-            Bin newbin = new Bin(); // Object to get scores
-
             // the score of the current state
-            int currentScore = newbin.findScore(highestState<1>, highestState<2>, highestState<3>); //TODO: bin list
+            int currentScore = bin.findScore(currentState);
 
-            // Object to get the random successor state
-            GenerateSuccessor getSuccessor = new GenerateSuccessor();
-            getSuccessor.generateSuccessor(highestState);
+            ArrayList<int[]> successor = generateSuccessor.generateSuccessor(currentState);
 
             // the score of the successor's state
-            int successorScore = newbin.findScore(getSuccessor<1>, getSuccessor<2>, getSuccessor<3>); //TODO: bin list
+            int successorScore = bin.findScore(successor);
 
             // consider if we accept the successor by using the acceptance probability
             if (getProbability(currentScore, successorScore, temperature) > Math.random()) {
-                highestState = getSuccessor.generateSuccessor(highestState);
+                currentState = successor;
             }
 
+            highestScore = bin.findScore(highestState);
             // compare the score to determine which one is better
-            if (currentScore < successorScore) {
-                highestState = initialState;
+            if (highestScore < successorScore) {
+                highestState = currentState;
             }
 
-            temperature *= 1 - coolingRate;
+            temperature *= 1 - coolingRate; //TODO: Schedule
         }
+
+        return bin.findScore(highestState);
     }
 
     // the method to get the probability by using the formula.
@@ -71,4 +63,17 @@ public class SA {
         }
         return Math.exp((E - newE) / temperature);
     }
+
+    /*public static int find_highest(Stack<Integer> stack) {
+
+        int temp = Integer.MIN_VALUE;
+
+        for (int a : stack) {
+            if (a > temp) {
+                temp = a;
+            }
+        }
+
+        return temp;
+    }*/
 }
