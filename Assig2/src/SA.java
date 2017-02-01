@@ -29,7 +29,17 @@ public class SA {
         // the tracker for the highest score state
         ArrayList<int[]> highestState = new ArrayList<>();
 
+        long tStart = System.currentTimeMillis();
+
         while ( temperature > 1.0 ) {
+
+            long tEnd = System.currentTimeMillis();
+            long tDelta = tEnd - tStart;
+            double elapsedSeconds = tDelta / 1000.0;
+
+            if (elapsedSeconds >= time_constraint) {
+                break;
+            }
 
             // the score of the current state
             int currentScore = bin.findScore(currentState);

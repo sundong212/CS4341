@@ -1,12 +1,14 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.Random;
 import java.util.Stack;
 
 public class Optimize {
     public static void main(String[] args) {
-        String approach = args[0];
+//        String approach = args[0];
         String file = args[0];
-        double timing = Double.parseDouble(args[2]);
+//        double timing = Double.parseDouble(args[2]);
         Stack<Integer> all_integers = new Stack();
 
         try {
@@ -34,23 +36,37 @@ public class Optimize {
             e.printStackTrace();
         }
 
-        if (approach.equals("FHC")) {
 
-            FHC fhc = new FHC();
-            int optimization = fhc.getOptimize(all_integers, timing);
-            System.out.print("Best Value for FHC within " + timing + "seconds is " + optimization);
+        RandomAllocate randomAllocate = new RandomAllocate();
+        ArrayList<int[]> a = randomAllocate.randomAllocate(all_integers);
+        System.out.print(a.get(0));
+        System.out.print(a.get(1));
+        System.out.print(a.get(2));
 
-        } else if (approach.equals("SA")) {
+        } if (approach.equals("SA")) {
 
             SA sa = new SA();
             int saOptimization = sa.getOptimize(all_integers, timing);
             System.out.println("Best Value for SA within " + timing + "seconds is " + saOptimization);
 
-        } else {
 
-            //TODO:
-
-        }
+//        if (approach.equals("FHC")) {
+//
+//            FHC fhc = new FHC();
+//            int optimization = fhc.getOptimize(all_integers, timing);
+//            System.out.print("Best Value for FHC within " + timing + "seconds is " + optimization);
+//
+//
+//        } else if (approach.equals("SA")) {
+//
+//
+//            //TODO:
+//
+//        } else {
+//
+//            //TODO:
+//
+//        }
 
     }
 }
