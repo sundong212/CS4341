@@ -12,10 +12,12 @@ public class RandomAllocate {
         Stack<Integer> temp_two = new Stack<>();
         Stack<Integer> temp_three = new Stack<>();
 
+        System.out.println(all_numbers.size());
+
         int iterate = all_numbers.size() / 3;
         int bin_number = 1;
 
-        for (int i = 0; i < iterate; i++) {
+        for (int i = 0; i < 27; i++) {
 
             if (bin_number == 1) {
 
@@ -24,6 +26,7 @@ public class RandomAllocate {
                 bin_number = 2;
 
             } else if(bin_number == 2) {
+
 
                 randomChoose(all_numbers, temp_two);
 
@@ -37,6 +40,10 @@ public class RandomAllocate {
             }
 
         }
+
+//        System.out.print(temp_one.size());
+//        System.out.print(temp_two.size());
+//        System.out.print(temp_three.size());
 
         int bin_one[] = new int[iterate];
         int bin_two[] = new int[iterate];
@@ -56,18 +63,28 @@ public class RandomAllocate {
     public static void randomChoose(Stack<Integer> all_numbers, Stack<Integer> bin_number) {
         int j = 0;
         int item = new Random().nextInt(all_numbers.size()) + 0; // 0 is minimum and size is maximum
+//        Stack<Integer> new_stack = new Stack<>();
 
         for (int a: all_numbers) {
             if (j == item) {
                 bin_number.push(a);
-                all_numbers.remove(a);
+//                all_numbers.remove(a);
             }
 
             j++;
         }
+
+        all_numbers.remove(item);
+
+//        System.out.println(new_stack);
+
+//        all_numbers = new_stack;
+
     }
 
     public static void popToArray(Stack<Integer> from, int[] to) {
+
+
 
         for (int i = 0; i < to.length; i++) {
             to[i] = from.pop();
